@@ -1,0 +1,95 @@
+import { NavLink } from './types'
+
+export const APP_NAME = 'SODKEEB TRADO MEDICAL CENTER'
+export const DEFAULT_SEO = {
+  title: 'Home of Good Herbal products',
+  defaultTitle: APP_NAME,
+  titleTemplate: `%s | ${APP_NAME}`,
+  description: 'Home of Good Herbal products',
+}
+export const USER_TYPES = {
+  ADMIN: 1,
+  CLIENT: 0,
+}
+export const PER_PAGE = 10
+export const ALLOWED_EXTENSIONS_FOR_DP = ['jpeg', 'jpg', 'png']
+export const ALLOWED_FILE_SIZE_DP = 1024 * 80 // 80kb
+
+export const ROUTES = {
+  ACCOUNT: {
+    LOGIN: '/account/login',
+    LOGOUT: '/account/logout',
+  },
+  DASHBOARD: {
+    OVERVIEW: '/dashboard',
+    PRODUCTS: '/dashboard/products',
+    NEW_PRODUCT: '/dashboard/products/new',
+  },
+  API: {
+    LOGIN: 'auth/login',
+    USER: 'user/',
+    products: 'order/',
+    OVERVIEW: 'user/overview/',
+  },
+}
+
+export const MESSAGES = {
+  LOGOUT_SUCCESSFUL: 'Your account has been logged out successfully',
+  UNKNOWN_ERROR: 'Unknown Error occurred. Please try again',
+  FORM_ERROR: 'Please fill the form properly',
+  LOGIN_REQUIRED: 'Please login first before you can access that page',
+  ADMIN_REQUIRED: 'Sorry! only Admin can access that page',
+  ALREADY_LOGIN: 'Please Logout first before you can have access to that page',
+  FETCH_LOADING_ERROR:
+    'Error Occurred while fetching the data. Please use the refresh button to reload the data',
+  FETCH_LOADING_ERROR2: 'Error occurred while fetching the data. Reload now',
+  FETCH_LOADING_SUCCESS: 'Data Fetched successfully',
+  FETCH_LOADING_DATA: 'Loading Data.........',
+  NO_DATA_TO_DISPLAY: 'SORRY! NO DATA AVAILABLE TO DISPLAY',
+  NO_ACCESS_TO_ROUTE: "Oops! You don't have access to this page",
+  GENERAL_ERROR_MESSAGE:
+    'Oops! Something went wrong with your request. please try again',
+  METHOD_NOT_ALLOWED: 'Sorry, Method not allowed or not yet supported',
+}
+
+export const HTTP_REQUEST_CODES = {
+  OK: 200,
+  CREATED: 201,
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  NOT_FOUND: 404,
+  METHOD_NOT_ALLOWED: 405,
+  SERVER_ERROR: 500,
+  NOT_IMPLEMENTED: 501,
+  BAD_GATEWAY: 502,
+}
+
+export const GENERAL_NAV_ITEMS1: NavLink[] = [
+  {
+    text: 'About Us',
+    link: '#about',
+  },
+  {
+    text: 'Products',
+    link: '#products',
+  },
+  {
+    text: 'Contact Us',
+    link: '#contact',
+  },
+]
+export const GENERAL_NAV_ITEMS2: NavLink[] = [
+  {
+    text: 'About Us',
+    link: '#about',
+  },
+  {
+    text: 'Products',
+    link: '#products',
+  },
+  {
+    text: 'Contact Us',
+    link: '#contact',
+  },
+]
