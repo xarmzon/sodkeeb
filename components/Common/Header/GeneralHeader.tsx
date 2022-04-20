@@ -4,7 +4,7 @@ import GeneralSlider from '../Slider/GeneralSlider'
 
 const GeneralHeader = () => {
   return (
-    <header className="container min-h-[50vh] w-full">
+    <header className="container w-full">
       <GeneralNavbar />
       <GeneralSlider />
     </header>

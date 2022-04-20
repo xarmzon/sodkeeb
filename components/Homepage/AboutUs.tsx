@@ -1,12 +1,10 @@
-import React from 'react'
-
 const AboutUs = () => {
   return (
     <section
       id="about"
       className="container grid min-h-[50vh] w-full grid-cols-12 items-center gap-5 bg-primary-gray4 p-5 sm:p-8"
     >
-      <h2 className="col-span-12 text-center text-2xl font-bold sm:col-span-4 sm:text-left sm:text-5xl md:text-6xl lg:col-span-3 lg:text-7xl xl:text-8xl">
+      <h2 className="col-span-12 text-center text-3xl font-bold sm:col-span-4 sm:text-left sm:text-5xl md:text-6xl lg:col-span-3 lg:text-7xl xl:text-8xl">
         About <span className="sm:block">Us</span>
       </h2>
       <div className="relative col-span-12 flex flex-col space-y-3 sm:col-span-8 md:text-lg md:leading-loose lg:col-span-9 lg:text-lg xl:text-xl xl:leading-7">
