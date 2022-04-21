@@ -30,6 +30,11 @@ const ContactUs = () => {
     setTimeout(() => {
       toast.dismiss()
       toast.success('Your message has been sent successfully')
+      setFormData({
+        name: '',
+        email: '',
+        message: '',
+      })
     }, 2000)
   }
   return (
