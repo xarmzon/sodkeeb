@@ -23,7 +23,7 @@ module.exports = {
         linearG2: 'linear-gradient(180deg, #022817 0%, #218257 100%)',
       },
       boxShadow: {
-        s1: '0px 12px 55px rgba(0, 0, 0, 0.19)',
+        s1: '0px 5px 25px rgba(0, 0, 0, 0.19)',
       },
       colors: {
         primary: {

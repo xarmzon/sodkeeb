@@ -5,3 +5,9 @@ export type NavLink = {
   text: string
   link: string
 }
+
+export type MessageForm = {
+  name: string
+  email: string
+  message: string
+}

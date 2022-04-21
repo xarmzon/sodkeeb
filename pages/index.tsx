@@ -1,3 +1,5 @@
+import ContactUs from '@components/Common/ContactUs'
+import Footer from '@components/Common/Footer'
 import GeneralHeader from '@components/Common/Header/GeneralHeader'
 import AboutUs from '@components/Homepage/AboutUs'
 import Products from '@components/Homepage/Products'
@@ -11,6 +13,8 @@ const Home: NextPage = () => {
       <GeneralHeader />
       <AboutUs />
       <Products />
+      <ContactUs />
+      <Footer />
     </>
   )
 }
