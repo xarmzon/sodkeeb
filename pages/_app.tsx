@@ -6,13 +6,18 @@ import { SWRConfig } from 'swr'
 import NProgress from 'nprogress'
 import { swrFetcher } from '@utils/fetcher'
 import { DEFAULT_SEO } from '@utils/constants'
-
+import aos from 'aos'
 import 'nprogress/nprogress.css'
 import '../styles/globals.css'
 
 NProgress.configure({ showSpinner: false })
 
 function MyApp({ Component, pageProps, router }: AppProps) {
+  useEffect(() => {
+    aos.init()
+    window.addEventListener('load', aos.refresh)
+  }, [])
+
   useEffect(() => {
     const startProgress = () => NProgress.start()
     const stopProgress = () => NProgress.done()
