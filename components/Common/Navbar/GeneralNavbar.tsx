@@ -6,7 +6,7 @@ import { BiMenu, BiX } from 'react-icons/bi'
 import { useState } from 'react'
 
 const GeneralNavbar = () => {
-  const [navOpen, setNavOpen] = useState<boolean>(true)
+  const [navOpen, setNavOpen] = useState<boolean>(false)
   const router = useRouter()
   console.log(router.asPath)
   const toggleMobileNav = () => {

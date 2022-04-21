@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Pagination, Navigation } from 'swiper'
+import { Pagination, Autoplay, Navigation } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
@@ -21,7 +21,8 @@ const GeneralSlider = () => {
           prevEl: '.left',
           disabledClass: 'text-gray-600 opacity-60 pointer-events-none',
         }}
-        modules={[Pagination, Navigation]}
+        autoplay={true}
+        modules={[Pagination, Navigation, Autoplay]}
         className="h-full"
       >
         {[...Array(3).fill(0)].map((d, i) => (
