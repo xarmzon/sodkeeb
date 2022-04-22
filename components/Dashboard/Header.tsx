@@ -3,16 +3,19 @@ import useSticky from '@hooks/useSticky'
 import { NavLink } from '@utils/types'
 
 import Link from 'next/link'
+import { BiCartAlt, BiPlusCircle } from 'react-icons/bi'
 
 const DASHBOARD_NAV: NavLink[] = [
   {
     text: 'Products',
     link: '/dashboard/products',
+    icon: <BiCartAlt />,
   },
   {
     text: 'New Product',
     link: '/dashboard/new',
     isBtn: true,
+    icon: <BiPlusCircle />,
   },
 ]
 
