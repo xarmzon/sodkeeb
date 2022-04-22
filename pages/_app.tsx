@@ -8,6 +8,7 @@ import { swrFetcher } from '@utils/fetcher'
 import { DEFAULT_SEO } from '@utils/constants'
 import 'nprogress/nprogress.css'
 import '../styles/globals.css'
+import { AnimatePresence } from 'framer-motion'
 
 NProgress.configure({ showSpinner: false })
 
@@ -34,7 +35,9 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         }}
       >
         <DefaultSeo {...DEFAULT_SEO} />
-        <Component {...pageProps} key={router.route} />
+        <AnimatePresence exitBeforeEnter>
+          <Component {...pageProps} key={router.route} />
+        </AnimatePresence>
       </SWRConfig>
       <Toaster toastOptions={{ duration: 5000 }} />
     </>

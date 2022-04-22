@@ -4,6 +4,7 @@ export type NavLink = {
   icon?: ReactNode
   text: string
   link: string
+  isBtn?: boolean
 }
 
 export type MessageForm = {
@@ -23,4 +24,10 @@ export type Product = {
   description: string
   slug: string
   items: ProductItems
+}
+
+export interface INavbar {
+  navItems: NavLink[]
+  toggleMobileNav: () => void
+  navOpen: boolean
 }

@@ -41,3 +41,24 @@ export const slideUp: Variants = {
     },
   },
 }
+
+export const exitPage: Variants = {
+  exit1: {
+    scale: 0.8,
+    opacity: 0,
+    y: 10,
+    transition: {
+      duration: 0.2,
+    },
+  },
+}
+export const enterPage: Variants = {
+  type1: {
+    scale: 1,
+    opacity: 0,
+    y: 0,
+    transition: {
+      duration: 0.2,
+    },
+  },
+}
