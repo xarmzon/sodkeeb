@@ -78,18 +78,26 @@ export const GENERAL_NAV_ITEMS1: NavLink[] = [
     text: 'Contact Us',
     link: '#contact',
   },
+  {
+    text: 'Admin',
+    link: '/dashboard/products',
+  },
 ]
 export const GENERAL_NAV_ITEMS2: NavLink[] = [
   {
     text: 'About Us',
-    link: '#about',
+    link: '/#about',
   },
   {
     text: 'Products',
-    link: '#products',
+    link: '/#products',
   },
   {
     text: 'Contact Us',
     link: '#contact',
+  },
+  {
+    text: 'Admin',
+    link: '/dashboard/products',
   },
 ]

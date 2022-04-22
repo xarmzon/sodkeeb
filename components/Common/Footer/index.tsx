@@ -9,7 +9,7 @@ interface IFooter {
 const Footer = ({ hasBackground = true }: IFooter) => {
   return (
     <footer
-      className={`flex flex-col items-center justify-center py-8 px-5 text-center sm:text-lg lg:text-xl ${
+      className={`flex flex-col items-center justify-center py-8 px-5 text-center text-xs sm:text-sm lg:text-lg ${
         hasBackground ? 'bg-primary-green text-gray-200' : ''
       }`}
     >

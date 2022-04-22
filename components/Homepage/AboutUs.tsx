@@ -1,3 +1,4 @@
+import { APP_NAME } from '@utils/constants'
 import { motion } from 'framer-motion'
 
 const AboutUs = () => {
@@ -14,6 +15,9 @@ const AboutUs = () => {
         whileInView={{
           opacity: 1,
           y: 0,
+          transition: {
+            duration: 0.8,
+          },
         }}
         viewport={{ once: true }}
         className="col-span-12 text-3xl font-bold text-center sm:col-span-4 sm:text-left sm:text-5xl md:text-6xl lg:col-span-3 lg:text-7xl xl:text-8xl"
@@ -30,20 +34,21 @@ const AboutUs = () => {
           whileInView={{
             opacity: 1,
             y: 0,
+            transition: {
+              delay: 0.4,
+              duration: 0.9,
+            },
           }}
           viewport={{ once: true }}
           className="flex flex-col w-full space-y-3"
         >
           <p className="">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
-            rerum earum porro minima expedita animi repudiandae aliquam! Ipsum
-            nam odit fuga esse quod, laborum autem cupiditate consequatur
-            doloribus accusantium eius, voluptates reiciendis repellendus,
-            facilis non similique sed.
-          </p>
-          <p className="">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
-            quaerat doloribus dolor voluptatibus velit ipsam.
+            {APP_NAME} is a medical health center that has solutions to your
+            problems such as Weak Erection, Back & Waist Pain, Pile Related
+            problems, Sexually Transmitted Diseases, Genital Infections,
+            Diabetes, Gonorrhea, Low Sperm Count, Staphylococcus, Fibroid, Ulcer
+            and all Internal & External health issues using Herbal and Natural
+            Products.
           </p>
         </motion.div>
       </div>

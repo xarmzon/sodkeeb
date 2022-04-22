@@ -8,7 +8,7 @@ import Image from 'next/image'
 
 const GeneralSlider = () => {
   return (
-    <div className="relative h-[calc(50vh-48px)] sm:h-[calc(60vh-48px)] lg:h-[calc(70vh-48px)]">
+    <div className="relative h-[calc(50vh-48px)] sm:h-[calc(60vh-48px)] md:h-[calc(70vh-48px)] lg:h-[calc(75vh-48px)] xl:h-[calc(90vh-48px)]">
       <Swiper
         pagination={{
           clickable: true,
@@ -28,7 +28,11 @@ const GeneralSlider = () => {
         {[...Array(3).fill(0)].map((d, i) => (
           <SwiperSlide className={`relative bg-cover bg-center`} key={i}>
             <span className="absolute inset-0 z-[4] h-full w-full bg-primary-blue2/40" />
-            <Image src={`/images/bg.jpg`} layout="fill" objectFit="cover" />
+            <Image
+              src={`/images/sodkeeb_slider2.jpg`}
+              layout="fill"
+              objectFit="cover"
+            />
           </SwiperSlide>
         ))}
       </Swiper>

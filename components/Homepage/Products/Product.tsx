@@ -1,6 +1,7 @@
 import Button from '@components/Common/Button'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { imageVariant } from '@utils/variants'
 
 interface IProduct {
   imagePosition: 'right' | 'left'
@@ -24,24 +25,14 @@ const Product = ({
       }`}
     >
       <motion.div
-        initial={{
-          y: 10,
-          opacity: 0,
-          scale: 0.8,
-        }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          transition: {
-            duration: 1,
-          },
-        }}
+        variants={imageVariant}
+        initial="hidden"
+        whileInView="show"
         viewport={{ once: true }}
-        className="relative min-h-[250px] w-full flex-1 shrink-0 overflow-hidden rounded-lg sm:min-h-[350px] md:min-h-[300px] lg:min-h-[380px] xl:min-h-[420px]"
+        className="relative min-h-[300px] w-full flex-1 shrink-0 overflow-hidden rounded-lg sm:min-h-[400px] md:min-h-[300px] lg:min-h-[380px] xl:min-h-[420px]"
       >
         <Image
-          src={`/images/product.jpg`}
+          src={img}
           layout="fill"
           objectFit="cover"
           objectPosition="center"
@@ -63,7 +54,7 @@ const Product = ({
           },
         }}
         viewport={{ once: true }}
-        className="flex flex-col flex-1 space-y-3 shrink-0 md:space-y-5"
+        className="flex flex-1 shrink-0 flex-col space-y-3 md:space-y-5"
       >
         <h3 className="text-lg font-bold line-clamp-3 sm:text-xl lg:text-3xl">
           {title}
