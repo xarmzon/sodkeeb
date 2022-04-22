@@ -24,7 +24,7 @@ const ProductDetailPage = () => {
               desc={`
              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia
              deserunt eveniet dolores nulla, ut, ipsa iusto ad voluptatum
-             eligendi porro, nesciunt quidem quibusdam? Magnam quibusdam maxime
+             eligendi porro, nesciunt quidem quibusdam Magnam quibusdam maxime
              autem perferendis similique eum!
           `}
             />
