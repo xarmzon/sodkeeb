@@ -33,6 +33,8 @@
     "@types/nprogress": "^0.2.0",
     "@types/react": "17.0.38",
     "autoprefixer": "^10.4.0",
+    "eslint": "8.14.0",
+    "eslint-config-next": "12.1.5",
     "postcss": "^8.4.5",
     "prettier": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.1.1",

@@ -32,6 +32,7 @@ const GeneralSlider = () => {
               src={`/images/sodkeeb_slider2.jpg`}
               layout="fill"
               objectFit="cover"
+              alt={`Products slider Image`}
             />
           </SwiperSlide>
         ))}

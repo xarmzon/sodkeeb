@@ -1,5 +1,11 @@
 import Button from '../Button'
-import { FaWhatsapp, FaTwitter, FaFacebook } from 'react-icons/fa'
+import {
+  FaWhatsapp,
+  FaTwitter,
+  FaFacebook,
+  FaYoutube,
+  FaInstagram,
+} from 'react-icons/fa'
 import { BiMailSend } from 'react-icons/bi'
 import { FormEvent, useState } from 'react'
 import { MessageForm } from '@utils/types'
@@ -87,23 +93,62 @@ const ContactUs = () => {
         <h3 className="text-4xl font-bold text-primary-green sm:text-5xl lg:text-6xl xl:text-7xl">
           Get in touch.
         </h3>
-        <div className="flex flex-col space-y-5 text-lg md:text-xl lg:space-y-8">
-          <div className="flex items-center space-x-2">
-            <FaWhatsapp className="text-primary-gray3" />
-            <span className="">+2348141161177</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <BiMailSend className="text-primary-gray3" />
-            <span className="">sodkeeb@mail.com</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <FaFacebook className="text-primary-gray3" />
-            <span className="">fb.com/sodkeeb</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <FaTwitter className="text-primary-gray3" />
-            <span className="">twitter.com/sodkeeb</span>
-          </div>
+        <p className="md:text-lg">
+          Connect with us by clicking any of the links below
+        </p>
+        <div className="grid grid-cols-3 gap-y-5">
+          <a
+            href="https://wa.me/message/DQREHY6Y7AYHB1"
+            target="_blank"
+            className="flex flex-col items-center justify-center text-center text-[#21c05b]"
+            rel="noreferrer"
+          >
+            <FaWhatsapp className="text-xl md:text-2xl" />
+            <span className="text-xs">WhatsApp</span>
+          </a>
+          <a
+            href="https://www.facebook.com/sodkeeb/"
+            target="_blank"
+            className="flex flex-col items-center justify-center text-center text-[#4267b2]"
+            rel="noreferrer"
+          >
+            <FaFacebook className="text-xl md:text-2xl" />
+            <span className="text-xs">Facebook</span>
+          </a>
+          <a
+            href="https://youtube.com/channel/UCjCvdoGgiedJPy1Sd0ruqmw"
+            target="_blank"
+            className="flex flex-col items-center justify-center text-center text-[#ff0000]"
+            rel="noreferrer"
+          >
+            <FaYoutube className="text-xl md:text-2xl" />
+            <span className="text-xs">Youtube</span>
+          </a>
+          <a
+            href="https://www.instagram.com/sodkeeb_trado_medical/"
+            target="_blank"
+            className="flex flex-col items-center justify-center text-center text-[#e1306c]"
+            rel="noreferrer"
+          >
+            <FaInstagram className="text-xl md:text-2xl" />
+            <span className="text-xs">Instagram</span>
+          </a>
+          <a
+            href="https://twitter.com/sodkeeb_trado_m"
+            target="_blank"
+            className="flex flex-col items-center justify-center text-center text-[#13a1f2]"
+            rel="noreferrer"
+          >
+            <FaTwitter className="text-xl md:text-2xl" />
+            <span className="text-xs">Twitter</span>
+          </a>
+          <a
+            href="mailto:sodkeeb.tradomed@gmail.com"
+            className="flex flex-col items-center justify-center text-center text-primary-blue2"
+          >
+            <BiMailSend className="text-2xl md:text-2xl" />
+            <span className="text-xs">Email</span>
+          </a>
         </div>
       </div>
     </section>

@@ -5,6 +5,7 @@ import { ALLOWED_FILE_SIZE_DP } from '@utils/constants'
 import { Product, ProductItems } from '@utils/types'
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
+import { BiPlusCircle } from 'react-icons/bi'
 
 const addProductText = 'Add Product'
 
@@ -15,7 +16,7 @@ const NewProductPage = () => {
   const [submitText, setSubmitText] = useState(addProductText)
   const [formData, setFormData] = useState<Omit<Product, 'slug'>>({
     title: '',
-    image: '/images/sodkeeb_d1.jpg',
+    image: '',
     description: '',
     items: {
       benefits: ['', ''],
@@ -140,7 +141,10 @@ const NewProductPage = () => {
           onClick={openDialogForImage}
           className="group relative w-full overflow-hidden transition-all duration-500 md:w-[55%]"
         >
-          <ProductImage src={formData.image} />
+          <span className="absolute inset-0 z-[35] hidden h-full w-full cursor-pointer items-center justify-center bg-primary-dark1/90 text-4xl text-white/40 transition-all duration-500 group-hover:flex">
+            <BiPlusCircle />
+          </span>
+          {formData.image && <ProductImage src={formData.image} />}
           <input
             ref={imageInputRef}
             className="hidden"

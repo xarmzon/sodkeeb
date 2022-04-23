@@ -36,6 +36,7 @@ const Product = ({
           layout="fill"
           objectFit="cover"
           objectPosition="center"
+          alt={`image for ${title}`}
         />
       </motion.div>
       <motion.div
