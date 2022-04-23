@@ -61,7 +61,7 @@ const NewProductPage = () => {
       }
       setFormData((prev) => ({
         ...prev,
-        sampleCakeImage: '',
+        image: '',
       }))
       const reader = new FileReader()
       reader.onloadstart = () => setShowUploadSpinner(true)
