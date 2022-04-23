@@ -93,14 +93,14 @@ const ContactUs = () => {
         <h3 className="text-4xl font-bold text-primary-green sm:text-5xl lg:text-6xl xl:text-7xl">
           Get in touch.
         </h3>
-        <p className="md:text-lg">
+        <p className="lg:text-lg">
           Connect with us by clicking any of the links below
         </p>
-        <div className="grid grid-cols-3 gap-y-5">
+        <div className="grid grid-cols-3 gap-y-5 sm:grid-cols-4">
           <a
             href="https://wa.me/message/DQREHY6Y7AYHB1"
             target="_blank"
-            className="flex flex-col items-center justify-center text-center text-[#21c05b]"
+            className="flex flex-col items-center justify-center text-center text-[#21c05b] sm:max-w-max"
             rel="noreferrer"
           >
             <FaWhatsapp className="text-xl md:text-2xl" />
@@ -109,7 +109,7 @@ const ContactUs = () => {
           <a
             href="https://www.facebook.com/sodkeeb/"
             target="_blank"
-            className="flex flex-col items-center justify-center text-center text-[#4267b2]"
+            className="flex flex-col items-center justify-center text-center text-[#4267b2] sm:max-w-max"
             rel="noreferrer"
           >
             <FaFacebook className="text-xl md:text-2xl" />
@@ -118,7 +118,7 @@ const ContactUs = () => {
           <a
             href="https://youtube.com/channel/UCjCvdoGgiedJPy1Sd0ruqmw"
             target="_blank"
-            className="flex flex-col items-center justify-center text-center text-[#ff0000]"
+            className="flex flex-col items-center justify-center text-center text-[#ff0000] sm:max-w-max"
             rel="noreferrer"
           >
             <FaYoutube className="text-xl md:text-2xl" />
@@ -127,7 +127,7 @@ const ContactUs = () => {
           <a
             href="https://www.instagram.com/sodkeeb_trado_medical/"
             target="_blank"
-            className="flex flex-col items-center justify-center text-center text-[#e1306c]"
+            className="flex flex-col items-center justify-center text-center text-[#e1306c] sm:max-w-max"
             rel="noreferrer"
           >
             <FaInstagram className="text-xl md:text-2xl" />
@@ -136,7 +136,7 @@ const ContactUs = () => {
           <a
             href="https://twitter.com/sodkeeb_trado_m"
             target="_blank"
-            className="flex flex-col items-center justify-center text-center text-[#13a1f2]"
+            className="flex flex-col items-center justify-center text-center text-[#13a1f2] sm:max-w-max"
             rel="noreferrer"
           >
             <FaTwitter className="text-xl md:text-2xl" />
@@ -144,7 +144,7 @@ const ContactUs = () => {
           </a>
           <a
             href="mailto:sodkeeb.tradomed@gmail.com"
-            className="flex flex-col items-center justify-center text-center text-primary-blue2"
+            className="flex flex-col items-center justify-center text-center text-primary-blue2 sm:max-w-max"
           >
             <BiMailSend className="text-2xl md:text-2xl" />
             <span className="text-xs">Email</span>
