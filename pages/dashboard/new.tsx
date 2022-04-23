@@ -1,3 +1,4 @@
+import Button from '@components/Common/Button'
 import Layout from '@components/Dashboard/Layout'
 import ProductImage from '@components/ProductDetails/ProductImage'
 import { ALLOWED_FILE_SIZE_DP } from '@utils/constants'
@@ -81,10 +82,13 @@ const NewProductPage = () => {
   ) => {
     const key = e.currentTarget.name
     const val = e.currentTarget.value
-    let newVal: string | string[]
     if (!item) {
-      newVal = val
+      setFormData((prev) => ({
+        ...prev,
+        [key]: val,
+      }))
     } else {
+      let newVal: string | string[]
       const keyVal = formData.items[key as keyof ProductItems]
       const isArray = typeof keyVal === 'object'
       if (!isArray) {
@@ -189,7 +193,7 @@ const NewProductPage = () => {
                       />
                     )}
                   </div>
-                  {[...Array(counter[i])].map((d, i) => {
+                  {[...Array(counter[i])].map((_, i) => {
                     const nameText = /s$/.test(key)
                       ? key
                           .split('')
@@ -224,6 +228,13 @@ const NewProductPage = () => {
                 </div>
               )
             })}
+            <div className="flex flex-col items-center justify-center">
+              <Button
+                type="submit"
+                text={submitText}
+                disabled={submitText !== addProductText}
+              />
+            </div>
           </form>
         </div>
       </div>
