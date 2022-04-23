@@ -25,7 +25,10 @@ export default handler
 
 const getProducts = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    res.status(HTTP_REQUEST_CODES.OK).json({ msg: 'Products' })
+    const products = await ProductModel.find()
+    res
+      .status(HTTP_REQUEST_CODES.OK)
+      .json({ msg: MESSAGES.PRODUCT_FETCH_SUCCESS, products })
   } catch (error) {
     console.log(error)
     res
@@ -37,7 +40,8 @@ const getProducts = async (req: NextApiRequest, res: NextApiResponse) => {
 const addNewProduct = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const formData = req.body
-    console.log(formData)
+    // console.log(formData)
+    await ProductModel.create({ ...formData })
     res
       .status(HTTP_REQUEST_CODES.CREATED)
       .json({ msg: MESSAGES.NEW_PRODUCT_SUCCESSFUL })

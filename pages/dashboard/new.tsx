@@ -139,8 +139,10 @@ const NewProductPage = () => {
       const {
         data: { msg },
       } = await api.post(ROUTES.API.PRODUCTS, { ...formData })
+      toast.dismiss()
       toast.success(msg)
     } catch (error) {
+      toast.dismiss()
       toast.error(getErrorMessage(error))
     }
     setSubmitText(addProductText)

@@ -50,6 +50,7 @@ export const MESSAGES = {
   FETCH_LOADING_ERROR:
     'Error Occurred while fetching the data. Please try again',
   FETCH_LOADING_SUCCESS: 'Data Fetched successfully',
+  PRODUCT_FETCH_SUCCESS: 'Products data fetched successfully',
   FETCH_LOADING_DATA: 'Loading Data.........',
   NO_DATA_TO_DISPLAY: 'SORRY! NO DATA AVAILABLE TO DISPLAY',
   NO_ACCESS_TO_ROUTE: "Oops! You don't have access to this page",
