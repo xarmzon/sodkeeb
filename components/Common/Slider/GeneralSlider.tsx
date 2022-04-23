@@ -29,7 +29,7 @@ const GeneralSlider = () => {
           <SwiperSlide className={`relative bg-cover bg-center`} key={i}>
             <span className="absolute inset-0 z-[4] h-full w-full bg-primary-blue2/40" />
             <Image
-              src={`/images/sodkeeb_slider2.jpg`}
+              src={`/images/sodkeeb_slider1.jpg`}
               layout="fill"
               objectFit="cover"
               alt={`Products slider Image`}
