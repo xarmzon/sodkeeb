@@ -1,11 +1,13 @@
 import Button from '@components/Common/Button'
 import Layout from '@components/Dashboard/Layout'
 import ProductImage from '@components/ProductDetails/ProductImage'
-import { ALLOWED_FILE_SIZE_DP } from '@utils/constants'
+import { getErrorMessage } from '@utils/index'
+import { ALLOWED_FILE_SIZE_DP, ROUTES } from '@utils/constants'
 import { Product, ProductItems } from '@utils/types'
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { BiPlusCircle } from 'react-icons/bi'
+import api from '@utils/fetcher'
 
 const addProductText = 'Add Product'
 
@@ -131,7 +133,17 @@ const NewProductPage = () => {
   const saveProduct = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (submitText !== addProductText) return
-    console.log(formData)
+    toast.loading('Saving Product...')
+    setSubmitText('Saving...')
+    try {
+      const {
+        data: { msg },
+      } = await api.post(ROUTES.API.PRODUCTS, { ...formData })
+      toast.success(msg)
+    } catch (error) {
+      toast.error(getErrorMessage(error))
+    }
+    setSubmitText(addProductText)
   }
 
   return (
@@ -139,9 +151,13 @@ const NewProductPage = () => {
       <div className="mb-8 flex flex-col space-y-8 md:flex-row-reverse md:space-y-0">
         <div
           onClick={openDialogForImage}
-          className="group relative w-full overflow-hidden transition-all duration-500 md:w-[55%]"
+          className="group relative min-h-[280px] w-full overflow-hidden rounded-lg bg-gray-400 transition-all duration-500 md:w-[55%]"
         >
-          <span className="absolute inset-0 z-[35] hidden h-full w-full cursor-pointer items-center justify-center bg-primary-dark1/90 text-4xl text-white/40 transition-all duration-500 group-hover:flex">
+          <span
+            className={`absolute inset-0 z-[35] h-full w-full cursor-pointer items-center justify-center bg-primary-dark1/90 text-4xl text-white/40 transition-all duration-500 ${
+              formData.image ? 'hidden group-hover:flex' : 'flex'
+            }`}
+          >
             <BiPlusCircle />
           </span>
           {formData.image && <ProductImage src={formData.image} />}

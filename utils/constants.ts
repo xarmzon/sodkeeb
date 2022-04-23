@@ -26,23 +26,29 @@ export const ROUTES = {
     NEW_PRODUCT: '/dashboard/products/new',
   },
   API: {
-    LOGIN: 'auth/login',
-    USER: 'user/',
-    products: 'order/',
-    OVERVIEW: 'user/overview/',
+    LOGIN: 'auth',
+    PRODUCTS: 'products',
   },
 }
 
 export const MESSAGES = {
   LOGOUT_SUCCESSFUL: 'Your account has been logged out successfully',
+  NEW_PRODUCT_SUCCESSFUL: 'New Product created successfully',
+  NEW_PRODUCT_ERROR:
+    'An error occurred while adding the New Product, please try again',
+  PRODUCT_UPDATED_SUCCESSFUL: 'Product updated successfully',
+  PRODUCT_UPDATE_ERROR:
+    'An error occurred while updating the Product, please try again',
+  PRODUCT_DELETED_SUCCESSFUL: 'Product deleted successfully',
+  PRODUCT_DELETE_ERROR:
+    'An error occurred while deleting the Product, please try again',
   UNKNOWN_ERROR: 'Unknown Error occurred. Please try again',
   FORM_ERROR: 'Please fill the form properly',
   LOGIN_REQUIRED: 'Please login first before you can access that page',
   ADMIN_REQUIRED: 'Sorry! only Admin can access that page',
   ALREADY_LOGIN: 'Please Logout first before you can have access to that page',
   FETCH_LOADING_ERROR:
-    'Error Occurred while fetching the data. Please use the refresh button to reload the data',
-  FETCH_LOADING_ERROR2: 'Error occurred while fetching the data. Reload now',
+    'Error Occurred while fetching the data. Please try again',
   FETCH_LOADING_SUCCESS: 'Data Fetched successfully',
   FETCH_LOADING_DATA: 'Loading Data.........',
   NO_DATA_TO_DISPLAY: 'SORRY! NO DATA AVAILABLE TO DISPLAY',

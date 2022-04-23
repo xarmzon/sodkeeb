@@ -3,21 +3,19 @@ import axios from 'axios'
 const api = axios.create()
 
 api.defaults.baseURL =
-  process.env.NEXT_PUBLIC_API_ENDPOINT || 'http://localhost:8000/api/v1/'
+  process.env.NEXT_PUBLIC_API_ENDPOINT || 'http://localhost:3000/api/'
 
-
-api.interceptors.request.use((config)=>{
-  const token = localStorage.getItem("token")
-  if(token){
-    if(config.headers)
-    config.headers["authorization"] = `Bearer ${token}`
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token')
+  if (token) {
+    if (config.headers) config.headers['authorization'] = `Bearer ${token}`
     else
-    config.headers = {
-      authorization: `Bearer ${token}`
-    }
+      config.headers = {
+        authorization: `Bearer ${token}`,
+      }
   }
   //console.log(config)
-  return config;
+  return config
 })
 
 api.interceptors.response.use(
