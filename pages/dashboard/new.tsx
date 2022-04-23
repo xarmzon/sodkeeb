@@ -2,13 +2,7 @@ import Layout from '@components/Dashboard/Layout'
 import ProductImage from '@components/ProductDetails/ProductImage'
 import { ALLOWED_FILE_SIZE_DP } from '@utils/constants'
 import { Product, ProductItems } from '@utils/types'
-import React, {
-  ChangeEvent,
-  FormEvent,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 
 const addProductText = 'Add Product'
