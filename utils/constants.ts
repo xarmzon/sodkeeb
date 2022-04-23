@@ -13,7 +13,7 @@ export const USER_TYPES = {
 }
 export const PER_PAGE = 10
 export const ALLOWED_EXTENSIONS_FOR_DP = ['jpeg', 'jpg', 'png']
-export const ALLOWED_FILE_SIZE_DP = 1024 * 80 // 80kb
+export const ALLOWED_FILE_SIZE_DP = 1024 * 800 // 800kb
 
 export const ROUTES = {
   ACCOUNT: {

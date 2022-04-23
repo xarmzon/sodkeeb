@@ -7,8 +7,8 @@ const MobileNavbar = ({ navItems, navOpen, toggleMobileNav }: INavbar) => {
   return (
     <div
       onClick={toggleMobileNav}
-      className={`fixed right-0 top-0 left-0 z-[9999] flex w-full justify-center bg-primary-green2/40 text-gray-200 backdrop-blur-sm ${
-        navOpen ? 'h-screen opacity-100' : 'h-0 opacity-0'
+      className={`fixed right-0 top-0 left-0 flex w-full justify-center bg-primary-green2/40 text-gray-200 backdrop-blur-sm ${
+        navOpen ? 'z-[9999] h-screen opacity-100' : 'z-[1] h-0 opacity-0'
       } transition-all duration-700`}
     >
       <BiX className="absolute top-3 right-5 cursor-pointer text-2xl transition-all duration-700 hover:rotate-[20deg]" />

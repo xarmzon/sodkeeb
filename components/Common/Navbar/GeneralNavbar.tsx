@@ -12,10 +12,10 @@ const GeneralNavbar = ({ navItems, navOpen, toggleMobileNav }: INavbar) => {
 
   return (
     <nav
-      className={`flex h-12 w-full items-center justify-between px-5 text-gray-100 md:px-8 ${
+      className={`z-[99] flex h-12 w-full items-center justify-between px-5 text-gray-100 md:px-8 ${
         sticky
-          ? 'fixed top-0 z-[99] bg-gradient-to-b from-primary-green2/90 to-primary-green/80 backdrop-blur-sm'
-          : 'bg-linearG'
+          ? 'fixed top-0 bg-gradient-to-b from-primary-green2/90 to-primary-green/80 backdrop-blur-sm'
+          : 'relative bg-linearG'
       } transition-all duration-700`}
     >
       <GeneralLogo />
