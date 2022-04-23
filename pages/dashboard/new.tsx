@@ -79,20 +79,14 @@ const NewProductPage = () => {
     item: boolean = false,
     index: number | undefined = undefined
   ) => {
+    const key = e.currentTarget.name
+    const val = e.currentTarget.value
+    let newVal: string | string[]
     if (!item) {
-      const key = e.currentTarget.name
-      const val = e.currentTarget.value
-      setFormData((prev) => ({
-        ...prev,
-        [key]: val,
-      }))
+      newVal = val
     } else {
-      const key = e.currentTarget.name
-      const val = e.currentTarget.value
       const keyVal = formData.items[key as keyof ProductItems]
       const isArray = typeof keyVal === 'object'
-      let newVal: string | string[]
-
       if (!isArray) {
         newVal = val
       } else {
