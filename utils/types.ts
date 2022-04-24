@@ -26,6 +26,35 @@ export type Product = {
   items: ProductItems
 }
 
+export type TProductItem = Product & {
+  createdAt: string
+  _id: string
+}
+
+export type UserState = {
+  username: string
+  token: string
+  loggedIn: boolean
+  loading: boolean
+}
+
+export type LoginFormData = {
+  email: string
+  password: string
+}
+
+export interface IPaging {
+  page: number
+  perPage: number
+  totalItems: number
+  totalPages: number
+}
+
+export interface IPagingData<T> {
+  results: T[]
+  paging: IPaging
+}
+
 export interface INavbar {
   navItems: NavLink[]
   toggleMobileNav: () => void

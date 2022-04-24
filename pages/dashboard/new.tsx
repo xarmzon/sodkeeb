@@ -133,6 +133,10 @@ const NewProductPage = () => {
   const saveProduct = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (submitText !== addProductText) return
+    if (formData.image.length < 1) {
+      toast.error('Please choose an image for the project')
+      return
+    }
     toast.loading('Saving Product...')
     setSubmitText('Saving...')
     try {
@@ -141,6 +145,25 @@ const NewProductPage = () => {
       } = await api.post(ROUTES.API.PRODUCTS, { ...formData })
       toast.dismiss()
       toast.success(msg)
+      setFormData({
+        title: '',
+        image: '',
+        description: '',
+        items: {
+          benefits: [
+            ...Array(formData.items.benefits?.length || 2)
+              .fill(0)
+              .map((d) => ''),
+          ],
+          ingredients: [
+            ...Array(formData.items.ingredients?.length || 2)
+              .fill(0)
+              .map((d) => ''),
+          ],
+          dosage: '',
+          packSize: '',
+        },
+      })
     } catch (error) {
       toast.dismiss()
       toast.error(getErrorMessage(error))
@@ -186,7 +209,7 @@ const NewProductPage = () => {
             </div>
             <div className="flex flex-col">
               <textarea
-                className="h-40 resize-none rounded-lg border-none bg-primary-gray4/70 text-primary-green2 shadow-sm outline-none focus:shadow-lg focus:ring-0"
+                className="h-40 resize-none rounded-lg border-none bg-primary-gray4/70 text-primary-green2 shadow-sm outline-none scrollbar-thin scrollbar-track-slate-300 focus:shadow-lg focus:ring-0"
                 name="description"
                 onChange={handleChange}
                 value={formData.description}
@@ -243,7 +266,7 @@ const NewProductPage = () => {
                             : 'Enter the ' +
                               (/Size/.test(nameText) ? 'Pack Size' : nameText)
                         }`}
-                        required
+                        required={isArray}
                       />
                     )
                   })}

@@ -1,13 +1,22 @@
+import slugify from 'slugify'
 import { MESSAGES } from './constants'
+import jwt from 'jsonwebtoken'
 
-export const formatPrice = (price: string | number) => {
-  let priceToConvert: number
-  if (typeof price === 'string') {
-    priceToConvert = parseFloat(price)
-  } else {
-    priceToConvert = price
-  }
-  return new Intl.NumberFormat('en-Us').format(priceToConvert)
+export const generateToken = (data: any) => {
+  const key = process.env.JWT_SECRET_KEY!
+  return jwt.sign(data, key, { expiresIn: '1d', subject: 'User Access Token' })
+}
+
+export const verifyToken = (token: string) => {
+  const key = process.env.JWT_SECRET_KEY!
+  return jwt.verify(token, key)
+}
+export const generateSlug = (title: string) => {
+  const slug = slugify(title, {
+    lower: true,
+  })
+
+  return slug
 }
 
 export const getErrorMessage = (e: any) => {

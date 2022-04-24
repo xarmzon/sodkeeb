@@ -9,6 +9,7 @@ import { DEFAULT_SEO } from '@utils/constants'
 import 'nprogress/nprogress.css'
 import '../styles/globals.css'
 import { AnimatePresence } from 'framer-motion'
+import { AuthProvider } from '@context/auth'
 
 NProgress.configure({ showSpinner: false })
 
@@ -28,7 +29,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     }
   }, [router])
   return (
-    <>
+    <AuthProvider>
       <SWRConfig
         value={{
           fetcher: async (resource, init) => await swrFetcher(resource, init),
@@ -40,7 +41,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         </AnimatePresence>
       </SWRConfig>
       <Toaster toastOptions={{ duration: 5000 }} />
-    </>
+    </AuthProvider>
   )
 }
 

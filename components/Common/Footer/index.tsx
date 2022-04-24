@@ -20,8 +20,12 @@ const Footer = ({ hasBackground = true }: IFooter) => {
       <span className="flex items-center">
         Crafted with <AiFillHeart className="mx-1 text-red-500" /> by
         <a
-          className={`ml-1 ${hasBackground ? 'text-primary-yellow1' : ''}`}
+          className={`ml-1 ${
+            hasBackground ? 'text-primary-yellow1' : 'text-primary-green2'
+          }`}
           href="https://www.linkedin.com/in/rastaxarm"
+          target="_blank"
+          rel="noreferrer"
         >
           Rastaarc
         </a>

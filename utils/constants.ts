@@ -32,16 +32,19 @@ export const ROUTES = {
 }
 
 export const MESSAGES = {
+  LOGIN_SUCCESSFUL: 'Your account has been logged in successfully',
   LOGOUT_SUCCESSFUL: 'Your account has been logged out successfully',
+  LOGIN_ERROR:
+    "We can't logged you in right now, please check your email or password",
   NEW_PRODUCT_SUCCESSFUL: 'New Product created successfully',
   NEW_PRODUCT_ERROR:
-    'An error occurred while adding the New Product, please try again',
+    'An error occurred while adding the new product, please try again',
   PRODUCT_UPDATED_SUCCESSFUL: 'Product updated successfully',
   PRODUCT_UPDATE_ERROR:
-    'An error occurred while updating the Product, please try again',
+    'An error occurred while updating the product, please try again',
   PRODUCT_DELETED_SUCCESSFUL: 'Product deleted successfully',
   PRODUCT_DELETE_ERROR:
-    'An error occurred while deleting the Product, please try again',
+    'An error occurred while deleting the product, please try again',
   UNKNOWN_ERROR: 'Unknown Error occurred. Please try again',
   FORM_ERROR: 'Please fill the form properly',
   LOGIN_REQUIRED: 'Please login first before you can access that page',

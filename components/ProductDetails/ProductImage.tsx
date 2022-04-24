@@ -1,18 +1,12 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { imageVariant } from '@utils/variants'
-import { BiPlusCircle } from 'react-icons/bi'
 
 interface IProductImage {
   src: string
   alt?: string
-  showChangeIcon?: boolean
 }
-const ProductImage = ({
-  src,
-  alt = '',
-  showChangeIcon = false,
-}: IProductImage) => {
+const ProductImage = ({ src, alt = '' }: IProductImage) => {
   return (
     <motion.div
       variants={imageVariant}

@@ -1,8 +1,9 @@
-import { connectDB } from './../../utils/database'
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { connectDB, getCustomPaginationData } from '@utils/database'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import ProductModel from '@models/ProductModel'
-import { HTTP_REQUEST_CODES, MESSAGES } from '@utils/constants'
+import { HTTP_REQUEST_CODES, MESSAGES, PER_PAGE } from '@utils/constants'
+import { generateSlug } from '@utils/index'
+import { TProductItem } from '@utils/types'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB()
@@ -25,10 +26,56 @@ export default handler
 
 const getProducts = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const products = await ProductModel.find()
+    const { search, page, perPage } = req.query
+    console.log(search, page, perPage)
+
+    let pipeline: any[] = []
+    if (search) {
+      pipeline.push({
+        $match: {
+          $or: [
+            {
+              title: {
+                $regex: new RegExp(search as string),
+                $options: 'i',
+              },
+            },
+            {
+              'items.dosage': {
+                $regex: new RegExp(search as string),
+                $options: 'i',
+              },
+            },
+            {
+              'items.packSize': {
+                $regex: new RegExp(search as string),
+                $options: 'i',
+              },
+            },
+            {
+              'items.benefits': {
+                $in: [new RegExp(search as string, 'i')],
+              },
+            },
+            {
+              'items.ingredients': {
+                $in: [new RegExp(search as string, 'i')],
+              },
+            },
+          ],
+        },
+      })
+    }
+    const pg = await getCustomPaginationData<TProductItem>(
+      pipeline,
+      ProductModel,
+      page ? Number(page as string) : 1,
+      perPage ? Number(perPage as string) : PER_PAGE
+    )
+
     res
       .status(HTTP_REQUEST_CODES.OK)
-      .json({ msg: MESSAGES.PRODUCT_FETCH_SUCCESS, products })
+      .json({ msg: MESSAGES.PRODUCT_FETCH_SUCCESS, ...pg })
   } catch (error) {
     console.log(error)
     res
@@ -41,7 +88,10 @@ const addNewProduct = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const formData = req.body
     // console.log(formData)
-    await ProductModel.create({ ...formData })
+    await ProductModel.create({
+      ...formData,
+      slug: generateSlug(formData?.title ?? ''),
+    })
     res
       .status(HTTP_REQUEST_CODES.CREATED)
       .json({ msg: MESSAGES.NEW_PRODUCT_SUCCESSFUL })
