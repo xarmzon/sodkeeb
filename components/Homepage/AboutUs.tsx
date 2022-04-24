@@ -20,11 +20,11 @@ const AboutUs = () => {
           },
         }}
         viewport={{ once: true }}
-        className="col-span-12 text-3xl font-bold text-center sm:col-span-4 sm:text-left sm:text-5xl md:text-6xl lg:col-span-3 lg:text-7xl xl:text-8xl"
+        className="col-span-12 text-center text-3xl font-bold sm:col-span-4 sm:text-left sm:text-5xl md:text-6xl lg:col-span-3 lg:text-7xl xl:text-8xl"
       >
         About <span className="sm:block">Us</span>
       </motion.h2>
-      <div className="relative flex flex-col col-span-12 space-y-3 sm:col-span-8 md:text-lg md:leading-loose lg:col-span-9 lg:text-lg xl:text-xl xl:leading-7">
+      <div className="relative col-span-12 flex flex-col space-y-3 sm:col-span-8 md:text-lg md:leading-loose lg:col-span-9 lg:text-lg xl:text-xl xl:leading-7">
         <span className="absolute left-0 right-0 -top-2 h-[2px] w-full rounded-full bg-primary-gray1/40 md:h-[3px]"></span>
         <motion.div
           initial={{
@@ -40,12 +40,12 @@ const AboutUs = () => {
             },
           }}
           viewport={{ once: true }}
-          className="flex flex-col w-full space-y-3"
+          className="flex w-full flex-col space-y-3"
         >
           <p className="">
             {APP_NAME} is a medical health center that has solutions to your
-            problems such as Weak Erection, Back & Waist Pain, Pile Related
-            problems, Sexually Transmitted Diseases, Genital Infections,
+            problems such as Infertility, Weak Erection, Back & Waist Pain, Pile
+            Related problems, Sexually Transmitted Diseases, Genital Infections,
             Diabetes, Gonorrhea, Low Sperm Count, Staphylococcus, Fibroid, Ulcer
             and all Internal & External health issues using Herbal and Natural
             Products.

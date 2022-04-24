@@ -1,3 +1,4 @@
+import Loader from '@components/Common/Loader'
 import Layout from '@components/Dashboard/Layout'
 import ProductItem from '@components/Dashboard/ProductItem'
 import usePaginatedFetch from '@hooks/usePaginatedFetch'
@@ -12,9 +13,15 @@ const ProductsDashboard = () => {
   }, [data])
   return (
     <Layout title="Products List">
-      <div className="">
-        <ProductItem />
-      </div>
+      {loading ? (
+        <div className="min-h-[20vh] w-full">
+          <Loader text="Loading Products..." />
+        </div>
+      ) : (
+        <div className="w-full">
+          <ProductItem />
+        </div>
+      )}
     </Layout>
   )
 }

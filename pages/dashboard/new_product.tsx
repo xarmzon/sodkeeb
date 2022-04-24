@@ -176,7 +176,9 @@ const NewProductPage = () => {
       <div className="mb-8 flex flex-col space-y-8 md:flex-row-reverse md:space-y-0">
         <div
           onClick={openDialogForImage}
-          className="group relative min-h-[280px] w-full overflow-hidden rounded-lg bg-gray-400 transition-all duration-500 md:w-[55%]"
+          className={`group relative w-full overflow-hidden rounded-lg bg-gray-400 transition-all duration-500 md:w-[55%] ${
+            !formData.image ? 'h-[280px] md:h-[380px]' : 'h-max'
+          }`}
         >
           <span
             className={`absolute inset-0 z-[35] h-full w-full cursor-pointer items-center justify-center bg-primary-dark1/90 text-4xl text-white/40 transition-all duration-500 ${
