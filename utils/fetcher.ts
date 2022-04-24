@@ -6,13 +6,18 @@ api.defaults.baseURL =
   process.env.NEXT_PUBLIC_API_ENDPOINT || 'http://localhost:3000/api/'
 
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token')
-  if (token) {
-    if (config.headers) config.headers['authorization'] = `Bearer ${token}`
-    else
-      config.headers = {
-        authorization: `Bearer ${token}`,
-      }
+  const user = localStorage.getItem('user')
+
+  if (user) {
+    const userObj = JSON.parse(user)
+    const token = userObj?.token || ''
+    if (token) {
+      if (config.headers) config.headers['Authorization'] = `Bearer ${token}`
+      else
+        config.headers = {
+          authorization: `Bearer ${token}`,
+        }
+    }
   }
   //console.log(config)
   return config

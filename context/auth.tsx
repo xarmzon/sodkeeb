@@ -1,7 +1,24 @@
 import { UserState } from '@utils/types'
 import { createContext, Dispatch, ReactNode, Reducer, useReducer } from 'react'
 
-export const ACTIONS = {
+type ACTIONS = {
+  SET_USER: 'SET_USER'
+  SET_LOADING: 'SET_LOADING'
+}
+interface AuthAction {
+  type: keyof ACTIONS
+  payload?: Partial<UserState>
+}
+type TAuthContext = {
+  userState: UserState
+  dispatch: Dispatch<AuthAction>
+}
+
+interface IAuthProvider {
+  children: ReactNode
+}
+
+export const ACTIONS: ACTIONS = {
   SET_USER: 'SET_USER',
   SET_LOADING: 'SET_LOADING',
 }
@@ -12,47 +29,36 @@ const initialState: UserState = {
   loggedIn: false,
   loading: false,
 }
-type TAuthContext = {
-  userState: UserState
-  dispatch: Dispatch<any>
-}
+
 const AuthContext = createContext<TAuthContext>({
   userState: initialState,
   dispatch: () => null,
 })
+AuthContext.displayName = 'AuthContext'
 
-interface IAuthProvider {
-  children: ReactNode
-}
-interface AuthAction {
-  type: string
-  payload?: Partial<UserState>
+const authReducer = (userState: UserState, action: AuthAction): UserState => {
+  console.log(action.type)
+  switch (action.type) {
+    case ACTIONS.SET_USER:
+      return {
+        ...userState,
+        username: action.payload?.username || '',
+        token: action.payload?.token || '',
+        loggedIn: Boolean(action.payload?.username && action?.payload?.token),
+      }
+    case ACTIONS.SET_LOADING:
+      return {
+        ...userState,
+        loading: action.payload?.loading || false,
+      }
+    default:
+      return userState
+  }
 }
 
 export const AuthProvider = ({ children }: IAuthProvider) => {
   const [userState, dispatch] = useReducer<Reducer<UserState, AuthAction>>(
-    (userState, action) => {
-      switch (action.type) {
-        case ACTIONS.SET_USER:
-          return {
-            ...userState,
-            username: action.payload?.username || '',
-            token: action.payload?.token || '',
-            loggedIn: Boolean(
-              action.payload?.username && action?.payload?.token
-            ),
-          }
-
-        case ACTIONS.SET_LOADING:
-          return {
-            ...userState,
-            loading: action.payload?.loading || false,
-          }
-
-        default:
-          return userState
-      }
-    },
+    authReducer,
     initialState
   )
 

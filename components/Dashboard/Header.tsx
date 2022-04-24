@@ -1,5 +1,6 @@
 import GeneralLogo from '@components/Common/Logo/GeneralLogo'
 import useSticky from '@hooks/useSticky'
+import { ROUTES } from '@utils/constants'
 import { NavLink } from '@utils/types'
 import Image from 'next/image'
 
@@ -10,12 +11,12 @@ import { BiCartAlt, BiPlusCircle, BiStoreAlt } from 'react-icons/bi'
 const DASHBOARD_NAV: NavLink[] = [
   {
     text: 'Products',
-    link: '/dashboard/products',
+    link: ROUTES.DASHBOARD.PRODUCTS,
     icon: <BiCartAlt />,
   },
   {
     text: 'New Product',
-    link: '/dashboard/new',
+    link: ROUTES.DASHBOARD.NEW_PRODUCT,
     isBtn: true,
     icon: <BiPlusCircle />,
   },

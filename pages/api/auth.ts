@@ -38,6 +38,7 @@ const getUserDetails = async (req: NextApiRequest, res: NextApiResponse) => {
 
 const loginUser = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
+    console.log(process.env.ADMIN_PASS, process.env.ADMIN_EMAIL)
     const { email, password } = req.body
     if (
       !email ||

@@ -9,11 +9,19 @@ import { DEFAULT_SEO } from '@utils/constants'
 import 'nprogress/nprogress.css'
 import '../styles/globals.css'
 import { AnimatePresence } from 'framer-motion'
-import { AuthProvider } from '@context/auth'
+import store from '@redux/store'
+import {
+  setLoading,
+  setLoadingLogout,
+  setLoginState,
+  setUser,
+} from '@redux/slice/auth'
+import { Provider } from 'react-redux'
 
 NProgress.configure({ showSpinner: false })
 
 function MyApp({ Component, pageProps, router }: AppProps) {
+  const userLoggedIn = store.getState().auth.loggedIn
   useEffect(() => {
     const startProgress = () => NProgress.start()
     const stopProgress = () => NProgress.done()
@@ -28,8 +36,30 @@ function MyApp({ Component, pageProps, router }: AppProps) {
       router.events.off('routeChangeError', stopProgress)
     }
   }, [router])
+
+  useEffect(() => {
+    if (store.getState().auth.loadingLogout) {
+      store.dispatch(setLoadingLogout(false))
+    }
+    const localStorageUser = localStorage.getItem('user')
+    if (localStorageUser) {
+      if (!userLoggedIn) {
+        const userData = JSON.parse(localStorageUser)
+        store.dispatch(
+          setUser({ token: userData.token, username: userData.username })
+        )
+        store.dispatch(setLoginState(true))
+      }
+    } else {
+      store.dispatch(setUser({ token: '', username: '' }))
+      store.dispatch(setLoginState(false))
+    }
+
+    store.dispatch(setLoading(false))
+  }, [userLoggedIn, router.route])
+
   return (
-    <AuthProvider>
+    <Provider store={store}>
       <SWRConfig
         value={{
           fetcher: async (resource, init) => await swrFetcher(resource, init),
@@ -40,8 +70,10 @@ function MyApp({ Component, pageProps, router }: AppProps) {
           <Component {...pageProps} key={router.route} />
         </AnimatePresence>
       </SWRConfig>
-      <Toaster toastOptions={{ duration: 5000 }} />
-    </AuthProvider>
+      <Toaster
+      // toastOptions={{ duration: 5000 }}
+      />
+    </Provider>
   )
 }
 

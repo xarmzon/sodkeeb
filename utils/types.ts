@@ -43,6 +43,14 @@ export type LoginFormData = {
   password: string
 }
 
+export type AuthSlice = {
+  username: string
+  token: string
+  loggedIn: boolean
+  loading: boolean
+  loadingLogout: boolean
+}
+
 export interface IPaging {
   page: number
   perPage: number

@@ -23,7 +23,7 @@ export const ROUTES = {
   DASHBOARD: {
     OVERVIEW: '/dashboard',
     PRODUCTS: '/dashboard/products',
-    NEW_PRODUCT: '/dashboard/products/new',
+    NEW_PRODUCT: '/dashboard/new_product',
   },
   API: {
     LOGIN: 'auth',

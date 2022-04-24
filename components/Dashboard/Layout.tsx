@@ -1,22 +1,28 @@
-import AuthForm from '@components/Auth/AuthForm'
 import Footer from '@components/Common/Footer'
 import Loader from '@components/Common/Loader'
-import AuthContext from '@context/auth'
 import { exitPage } from '@utils/variants'
 import { motion } from 'framer-motion'
 import { NextSeo } from 'next-seo'
-import { ReactNode, useContext } from 'react'
+import { ReactNode, useEffect } from 'react'
 import Header from './Header'
-
+import { useAppSelector } from '@redux/store'
+import { useRouter } from 'next/router'
+import { MESSAGES, ROUTES } from '@utils/constants'
 interface ILayout {
   children: ReactNode
   title?: string
 }
 const Layout = ({ title, children }: ILayout) => {
-  const {
-    userState: { loggedIn, loading },
-  } = useContext(AuthContext)
-
+  const { loading, loggedIn } = useAppSelector((store) => store.auth)
+  const router = useRouter()
+  useEffect(() => {
+    if (!loading && !loggedIn) {
+      router.push(
+        `${ROUTES.ACCOUNT.LOGIN}?redirect=${ROUTES.DASHBOARD.PRODUCTS}&msg=${MESSAGES.LOGIN_REQUIRED}`
+      )
+      return
+    }
+  }, [loading, loggedIn, router])
   return (
     <>
       {title && <NextSeo title={title} />}
@@ -29,17 +35,15 @@ const Layout = ({ title, children }: ILayout) => {
               {title ?? 'Dashboard'}
             </div>
           )}
-          <motion.div variants={exitPage} exit="exit1" className="">
-            {loading ? (
-              <div className="flex h-full w-full items-center justify-center">
-                <Loader text="Loading..." />
-              </div>
-            ) : loggedIn ? (
-              { children }
-            ) : (
-              <AuthForm />
-            )}
-          </motion.div>
+          {loading || !loggedIn ? (
+            <div className="flex h-[calc(75vh-48px)] w-full items-center justify-center">
+              <Loader text="Checking User..." />
+            </div>
+          ) : (
+            <motion.div variants={exitPage} exit="exit1" className="">
+              {children}
+            </motion.div>
+          )}
         </section>
         <Footer hasBackground={false} />
       </section>
