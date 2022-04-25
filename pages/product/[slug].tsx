@@ -20,7 +20,7 @@ const ProductDetailPage = ({
   productData,
   foundProduct,
 }: IProductDetailPage) => {
-  const [product, setProduct] = useState<TProductItem | null>(() => {
+  const [product, _] = useState<TProductItem | null>(() => {
     return productData ? JSON.parse(productData) : null
   })
   return (
