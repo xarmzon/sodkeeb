@@ -1,6 +1,5 @@
 import Loader from '@components/Common/Loader'
 import Image from 'next/image'
-import React, { useState } from 'react'
 import { BiEditAlt, BiXCircle } from 'react-icons/bi'
 
 interface IProductItem {
@@ -24,7 +23,7 @@ const ProductItem = ({
 }: IProductItem) => {
   return (
     <div
-      className={`relative flex max-h-[110px] min-h-[110px] w-full overflow-hidden rounded-lg bg-white shadow-lg sm:max-h-[150px] sm:min-h-[150px]`}
+      className={`relative flex max-h-[130px] min-h-[130px] w-full overflow-hidden rounded-lg bg-white shadow-lg sm:max-h-[150px] sm:min-h-[150px]`}
     >
       {loading && (
         <div className="absolute inset-0 z-[3] flex h-full w-full items-center justify-center bg-white/40 backdrop-blur-[2px]">
@@ -41,10 +40,8 @@ const ProductItem = ({
           />
         </div>
         <div className="flex-1">
-          <h3 className="mb-1 text-sm font-bold line-clamp-2 sm:text-lg">
-            {title}
-          </h3>
-          <p className="text-xs line-clamp-3 sm:text-base">{description}</p>
+          <h3 className="mb-1 font-bold line-clamp-2 sm:text-lg">{title}</h3>
+          <p className="text-sm line-clamp-3 sm:text-base">{description}</p>
         </div>
       </div>
       <div className="flex w-10 flex-shrink-0 flex-col items-center text-xl sm:w-14 sm:text-2xl">

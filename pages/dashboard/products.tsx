@@ -59,7 +59,7 @@ const ProductsDashboard = () => {
         <div className="mx-auto flex min-h-[55vh] w-full max-w-3xl flex-col space-y-10">
           {data?.results?.length > 0 ? (
             <div className="h-full w-full">
-              <div className="w-full">
+              <div className="flex w-full flex-col space-y-8">
                 {data?.results?.map((item: TProductItem, i: number) => (
                   <ProductItem
                     image={item.image}

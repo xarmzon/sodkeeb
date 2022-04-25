@@ -30,7 +30,7 @@ const ProductsList = () => {
         <div className="h-full w-full">
           {data?.results?.length > 0 ? (
             <>
-              <div className="w-full">
+              <div className="flex w-full flex-col space-y-12">
                 {data?.results?.map((item: TProductItem, i: number) => (
                   <Product
                     link={`${ROUTES.PRODUCT_DETAILS}/${item.slug}`}

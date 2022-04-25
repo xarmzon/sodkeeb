@@ -14,7 +14,7 @@ export type MessageForm = {
 }
 export type ProductItems = {
   packSize: string
-  dosage?: string
+  dosage?: string[]
   benefits?: string[]
   ingredients?: string[]
 }

@@ -22,7 +22,7 @@ const ProductSchema = new Schema<Product>(
     items: {
       benefits: [String],
       ingredients: [String],
-      dosage: String,
+      dosage: [String],
       packSize: String,
     },
   },

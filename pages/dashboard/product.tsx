@@ -31,16 +31,18 @@ const NewAndUpdateProductPage = () => {
     items: {
       benefits: ['', ''],
       ingredients: ['', ''],
-      dosage: '',
+      dosage: ['', ''],
       packSize: '',
     },
   })
 
-  const [counter, setCounter] = useState<number[]>([
-    ...Object.keys(formData.items)
-      .filter((key) => key !== 'dosage' && key !== 'packSize')
-      .map((d) => 2),
-  ])
+  const [counter, setCounter] = useState<number[]>(() => {
+    const keyWithArrayValues = Object.keys(formData.items).filter(
+      (d) => typeof formData.items[d as keyof ProductItems] === 'object'
+    )
+    return [...keyWithArrayValues.map((_) => 2)]
+    // return [...Object.keys(formData.items).map((d) => 2)]
+  })
 
   useEffect(() => {
     if (showUploadSpinner) {
@@ -61,11 +63,12 @@ const NewAndUpdateProductPage = () => {
             `${ROUTES.API.PRODUCTS}?type=single&product=${product}`
           )
           setSubmitText(updateProductText)
-          setCounter([
-            ...Object.keys(pd.items)
-              .filter((key) => key !== 'dosage' && key !== 'packSize')
-              .map((d) => pd.items[d].length || 2),
-          ])
+          setCounter(() => {
+            const keyWithArrayValues = Object.keys(pd.items).filter(
+              (d) => typeof pd.items[d as keyof ProductItems] === 'object'
+            )
+            return [...keyWithArrayValues.map((key) => pd.items[key].length)]
+          })
           setFormData(pd)
         } catch (err) {
           toast.error(getErrorMessage(err))
@@ -148,12 +151,17 @@ const NewAndUpdateProductPage = () => {
     const c = [...counter]
     c[index] = value
     setCounter(c)
-    const k = formData.items[key as keyof ProductItems]!
+    let k = formData.items[key as keyof ProductItems]!
     if (typeof k === 'object') {
-      if (value > k.length) {
-        k.push('')
+      const closeVal = value - k.length
+      if (closeVal > 1 || closeVal < -1) {
+        k = [...Array(value).fill('')]
       } else {
-        k.pop()
+        if (value > k.length) {
+          k.push('')
+        } else {
+          k.pop()
+        }
       }
       setFormData((prev) => ({
         ...prev,
@@ -194,17 +202,11 @@ const NewAndUpdateProductPage = () => {
           image: '',
           description: '',
           items: {
-            benefits: [
-              ...Array(formData.items.benefits?.length || 2)
-                .fill(0)
-                .map((d) => ''),
-            ],
+            benefits: [...Array(formData.items.benefits?.length || 2).fill('')],
             ingredients: [
-              ...Array(formData.items.ingredients?.length || 2)
-                .fill(0)
-                .map((d) => ''),
+              ...Array(formData.items.ingredients?.length || 2).fill(''),
             ],
-            dosage: '',
+            dosage: [...Array(formData.items.dosage?.length || 2).fill('')],
             packSize: '',
           },
         })
@@ -280,7 +282,10 @@ const NewAndUpdateProductPage = () => {
                   <div key={i} className="flex flex-col space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="flex-1 font-semibold capitalize">
-                        {key === 'packSize' ? 'Pack Size' : key}:
+                        {/([a-z0-9])([A-Z0-9])/.test(key)
+                          ? key.replace(/([a-z0-9])([A-Z0-9])/g, '$1 $2')
+                          : key}
+                        :
                       </span>
                       {isArray && (
                         <input
@@ -300,6 +305,8 @@ const NewAndUpdateProductPage = () => {
                             .split('')
                             .filter((_, i) => i !== key.length - 1)
                             .join('')
+                        : /([a-z0-9])([A-Z0-9])/.test(key)
+                        ? key.replace(/([a-z0-9])([A-Z0-9])/g, '$1 $2')
                         : key
                       const k = key as keyof ProductItems
                       const value = isArray
@@ -318,9 +325,8 @@ const NewAndUpdateProductPage = () => {
                           value={value}
                           placeholder={`${
                             isArray
-                              ? nameText + ' text ' + (i + 1)
-                              : 'Enter the ' +
-                                (/Size/.test(nameText) ? 'Pack Size' : nameText)
+                              ? `${nameText} text ${i + 1}`
+                              : `Enter the ${nameText}`
                           }`}
                           required={isArray}
                         />
