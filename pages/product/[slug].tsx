@@ -55,7 +55,7 @@ const ProductDetailPage = ({
               />
             )}
             {product?.items?.dosage && (
-              <ItemList title="Ingredients" items={product?.items?.dosage} />
+              <ItemList title="Dosage" items={product?.items?.dosage} />
             )}
             {product?.items?.packSize && (
               <ItemList title="Pack Size(s)" items={product?.items?.packSize} />
@@ -77,7 +77,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   let product: TProductItem | undefined | null
   const q = query
   const slug = q.slug as string
-  console.log(slug)
+  // console.log(slug)
   if (slug) {
     product = await ProductModel.findOne({ slug })
   }

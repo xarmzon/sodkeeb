@@ -14,7 +14,7 @@ const Footer = ({ hasBackground = true }: IFooter) => {
       }`}
     >
       <span>
-        Copyright {new Date().getFullYear()}{' '}
+        Copyright &copy;{new Date().getFullYear()}{' '}
         <span className="font-semibold">{APP_NAME}</span>. All right reserved.
       </span>
       <span className="flex items-center">
