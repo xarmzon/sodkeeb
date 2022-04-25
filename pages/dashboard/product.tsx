@@ -14,7 +14,7 @@ import Loader from '@components/Common/Loader'
 const addProductText = 'Add Product'
 const updateProductText = 'Update Product'
 
-const NewProductPage = () => {
+const NewAndUpdateProductPage = () => {
   const imageInputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
   const { product } = router.query
@@ -347,4 +347,4 @@ const NewProductPage = () => {
   )
 }
 
-export default NewProductPage
+export default NewAndUpdateProductPage

@@ -20,6 +20,7 @@ export const ROUTES = {
     LOGIN: '/account/login',
     LOGOUT: '/account/logout',
   },
+  PRODUCT_DETAILS: '/product',
   DASHBOARD: {
     OVERVIEW: '/dashboard',
     PRODUCTS: '/dashboard/products',

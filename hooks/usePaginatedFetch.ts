@@ -24,7 +24,7 @@ const usePaginatedFetch = (url: string) => {
     handlePagination,
     handleSearch,
     page,
-    mString: `${url}?search=${searchVal}&page=${page}`,
+    key: `${url}?search=${searchVal}&page=${page}`,
   }
 }
 

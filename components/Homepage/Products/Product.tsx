@@ -57,10 +57,10 @@ const Product = ({
         viewport={{ once: true }}
         className="flex flex-1 shrink-0 flex-col space-y-3 md:space-y-5"
       >
-        <h3 className="text-lg font-bold line-clamp-3 sm:text-xl lg:text-3xl">
+        <h3 className="text-lg font-bold line-clamp-2 sm:text-xl lg:text-3xl">
           {title}
         </h3>
-        <p className="text-sm line-clamp-6 sm:text-base lg:text-lg">
+        <p className="text-sm line-clamp-5 sm:text-base lg:text-lg">
           {description}
         </p>
         <Button link={link} text="Product Details" isLink />

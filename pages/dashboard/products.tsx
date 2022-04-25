@@ -10,6 +10,7 @@ import toast from 'react-hot-toast'
 import { getErrorMessage } from '@utils/index'
 import api from '@utils/fetcher'
 import { useRouter } from 'next/router'
+import Pagination from '@components/Pagination'
 
 const ProductsDashboard = () => {
   const router = useRouter()
@@ -22,9 +23,9 @@ const ProductsDashboard = () => {
     page,
     mutate,
   } = usePaginatedFetch(ROUTES.API.PRODUCTS)
-  useEffect(() => {
-    console.log(data)
-  }, [data])
+  // useEffect(() => {
+  //   console.log(data)
+  // }, [data])
 
   const [loading, setLoading] = useState<boolean>(false)
   const handleEdit = (id: string) => {
@@ -57,18 +58,28 @@ const ProductsDashboard = () => {
       ) : (
         <div className="mx-auto flex min-h-[55vh] w-full max-w-3xl flex-col space-y-10">
           {data?.results?.length > 0 ? (
-            data?.results?.map((item: TProductItem, i: number) => (
-              <ProductItem
-                image={item.image}
-                description={item.description}
-                id={item._id}
-                title={item.title}
-                key={i}
-                handleDelete={handleDelete}
-                handleEdit={handleEdit}
-                loading={loading}
-              />
-            ))
+            <div className="h-full w-full">
+              <div className="w-full">
+                {data?.results?.map((item: TProductItem, i: number) => (
+                  <ProductItem
+                    image={item.image}
+                    description={item.description}
+                    id={item._id}
+                    title={item.title}
+                    key={i}
+                    handleDelete={handleDelete}
+                    handleEdit={handleEdit}
+                    loading={loading}
+                  />
+                ))}
+              </div>
+              <div className="mt-10 flex w-full justify-center">
+                <Pagination
+                  paging={data?.paging}
+                  handlePage={handlePagination}
+                />
+              </div>
+            </div>
           ) : (
             <div className="flex min-h-[40vh] items-center justify-center text-center text-lg font-bold text-primary-red3">
               {MESSAGES.NO_DATA_TO_DISPLAY}
