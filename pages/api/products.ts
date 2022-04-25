@@ -4,6 +4,7 @@ import ProductModel from '@models/ProductModel'
 import { HTTP_REQUEST_CODES, MESSAGES, PER_PAGE } from '@utils/constants'
 import { generateSlug } from '@utils/index'
 import { TProductItem } from '@utils/types'
+import { userRequired } from '@utils/middleware'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB()
@@ -13,6 +14,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       break
     case 'POST':
       await addNewProduct(req, res)
+      break
+    case 'DELETE':
+      await deleteProduct(req, res)
       break
 
     default:
@@ -27,7 +31,7 @@ export default handler
 const getProducts = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { search, page, perPage } = req.query
-    console.log(search, page, perPage)
+    // console.log(search, page, perPage)
 
     let pipeline: any[] = []
     if (search) {
@@ -85,6 +89,7 @@ const getProducts = async (req: NextApiRequest, res: NextApiResponse) => {
 }
 
 const addNewProduct = async (req: NextApiRequest, res: NextApiResponse) => {
+  userRequired(req, res)
   try {
     const formData = req.body
     // console.log(formData)
@@ -100,5 +105,35 @@ const addNewProduct = async (req: NextApiRequest, res: NextApiResponse) => {
     res
       .status(HTTP_REQUEST_CODES.SERVER_ERROR)
       .json({ msg: MESSAGES.NEW_PRODUCT_ERROR })
+  }
+}
+const deleteProduct = async (req: NextApiRequest, res: NextApiResponse) => {
+  userRequired(req, res)
+  try {
+    const q = req.query
+    const product = q?.product as string
+    if (!product) {
+      res
+        .status(HTTP_REQUEST_CODES.BAD_REQUEST)
+        .json({ msg: MESSAGES.BAD_REQUEST })
+      return
+    }
+    const productExist = await ProductModel.findById(product)
+    if (!productExist) {
+      res
+        .status(HTTP_REQUEST_CODES.NOT_FOUND)
+        .json({ msg: MESSAGES.NO_PRODUCT_FOUND })
+      return
+    }
+
+    await ProductModel.deleteOne({ _id: product })
+    res
+      .status(HTTP_REQUEST_CODES.CREATED)
+      .json({ msg: MESSAGES.PRODUCT_DELETED_SUCCESSFUL })
+  } catch (error) {
+    console.log(error)
+    res
+      .status(HTTP_REQUEST_CODES.SERVER_ERROR)
+      .json({ msg: MESSAGES.PRODUCT_DELETE_ERROR })
   }
 }

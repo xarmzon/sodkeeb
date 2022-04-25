@@ -23,7 +23,7 @@ export const ROUTES = {
   DASHBOARD: {
     OVERVIEW: '/dashboard',
     PRODUCTS: '/dashboard/products',
-    NEW_PRODUCT: '/dashboard/new_product',
+    PRODUCT: '/dashboard/product',
   },
   API: {
     LOGIN: 'auth',
@@ -45,6 +45,7 @@ export const MESSAGES = {
   PRODUCT_DELETED_SUCCESSFUL: 'Product deleted successfully',
   PRODUCT_DELETE_ERROR:
     'An error occurred while deleting the product, please try again',
+  NO_PRODUCT_FOUND: "Sorry! we can' find the product you're looking for",
   UNKNOWN_ERROR: 'Unknown Error occurred. Please try again',
   FORM_ERROR: 'Please fill the form properly',
   LOGIN_REQUIRED: 'Please login first before you can access that page',
@@ -60,6 +61,8 @@ export const MESSAGES = {
   GENERAL_ERROR_MESSAGE:
     'Oops! Something went wrong with your request. please try again',
   METHOD_NOT_ALLOWED: 'Sorry, Method not allowed or not yet supported',
+  BAD_REQUEST: 'Sorry, Bad request',
+  BAD_REQUEST_TOKEN: 'Sorry, Bad request. Invalid or expired token supplied',
 }
 
 export const HTTP_REQUEST_CODES = {

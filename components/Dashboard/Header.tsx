@@ -16,7 +16,7 @@ const DASHBOARD_NAV: NavLink[] = [
   },
   {
     text: 'New Product',
-    link: ROUTES.DASHBOARD.NEW_PRODUCT,
+    link: ROUTES.DASHBOARD.PRODUCT,
     isBtn: true,
     icon: <BiPlusCircle />,
   },

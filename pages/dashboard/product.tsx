@@ -8,11 +8,19 @@ import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { BiPlusCircle } from 'react-icons/bi'
 import api from '@utils/fetcher'
+import { useRouter } from 'next/router'
 
 const addProductText = 'Add Product'
+const updateProductText = "Update Product"
 
 const NewProductPage = () => {
   const imageInputRef = useRef<HTMLInputElement>(null)
+  const router = useRouter()
+
+  useEffect(()=>{
+    const {product} = router.query
+    console.log(`Product ID: ${product}`)
+  },[router.query])
 
   const [showUploadSpinner, setShowUploadSpinner] = useState<boolean>(false)
   const [submitText, setSubmitText] = useState(addProductText)
