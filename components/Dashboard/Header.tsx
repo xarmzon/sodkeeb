@@ -54,14 +54,16 @@ const Header = () => {
           </Link>
         ))}
       </nav>
-      <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full bg-primary-gray2/60">
-        <Image
-          src={'/images/sodkeeb_d1.jpg'}
-          layout="fill"
-          objectFit="cover"
-          alt="Display Picture"
-        />
-      </div>
+      <Link href={ROUTES.ACCOUNT.LOGOUT}>
+        <a className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full bg-primary-gray2/60">
+          <Image
+            src={'/images/sodkeeb_d1.jpg'}
+            layout="fill"
+            objectFit="cover"
+            alt="Display Picture"
+          />
+        </a>
+      </Link>
     </header>
   )
 }

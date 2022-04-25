@@ -10,7 +10,7 @@ const Error404Page = () => {
       <NextSeo title="Page Not Found" />
       <GeneralHeader />
 
-      <div className="m-8 mx-auto flex min-h-[60vh] w-full max-w-lg flex-col items-center justify-center space-y-5 text-center lg:space-y-9">
+      <div className="m-8 mx-auto flex min-h-[30vh] w-full max-w-lg flex-col items-center justify-center space-y-5 text-center md:min-h-[40vh] lg:min-h-[50vh] lg:space-y-9">
         <h1 className="text-2xl font-bold text-primary-red3 md:text-3xl lg:text-4xl">
           Oops!! Error404
         </h1>
