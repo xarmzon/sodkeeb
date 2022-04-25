@@ -19,6 +19,8 @@ const ItemList = ({ title, items }: IItemList) => {
       <h2 className="text-xl font-bold md:text-2xl lg:text-3xl">{title}</h2>
       {typeof items === 'string' ? (
         <p className="sm:text-lg lg:text-xl">{items}</p>
+      ) : items.length === 1 ? (
+        <p className="sm:text-lg lg:text-xl">{items.join(' ')}</p>
       ) : (
         <ul className="">
           {items.map((item: string, i: number) => (
