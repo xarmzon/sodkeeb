@@ -77,7 +77,14 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const slug = q.slug as string
   console.log(slug)
   if (slug) {
-    product = await ProductModel.findOne({ slug })
+    const p = await ProductModel.aggregate([
+      {
+        $match: {
+          slug: slug,
+        },
+      },
+    ]).exec()
+    product = p[0] as TProductItem
   }
   return {
     props: {
