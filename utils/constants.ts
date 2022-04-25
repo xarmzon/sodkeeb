@@ -57,7 +57,7 @@ export const MESSAGES = {
   FETCH_LOADING_SUCCESS: 'Data Fetched successfully',
   PRODUCT_FETCH_SUCCESS: 'Products data fetched successfully',
   FETCH_LOADING_DATA: 'Loading Data.........',
-  NO_DATA_TO_DISPLAY: 'SORRY! NO PRODUCT DATA AVAILABLE TO DISPLAY RIGHT NOW. PLEASE CHECK BACK LATER',
+  NO_DATA_TO_DISPLAY: 'SORRY! NO PRODUCT DATA TO DISPLAY RIGHT NOW. PLEASE CHECK BACK LATER',
   NO_ACCESS_TO_ROUTE: "Oops! You don't have access to this page",
   GENERAL_ERROR_MESSAGE:
     'Oops! Something went wrong with your request. please try again',
