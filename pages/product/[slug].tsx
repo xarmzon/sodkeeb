@@ -10,6 +10,7 @@ import { GetServerSideProps } from 'next'
 import { TProductItem } from '@utils/types'
 import ProductModel from '@models/ProductModel'
 import { useState } from 'react'
+import { connectDB } from '@utils/database'
 
 interface IProductDetailPage {
   productData: string
@@ -71,20 +72,14 @@ const ProductDetailPage = ({
 export default ProductDetailPage
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  await connectDB()
   let foundProduct: boolean = false
   let product: TProductItem | undefined | null
   const q = query
   const slug = q.slug as string
   console.log(slug)
   if (slug) {
-    const p = await ProductModel.aggregate([
-      {
-        $match: {
-          slug: slug,
-        },
-      },
-    ]).exec()
-    product = p[0] as TProductItem
+    product = await ProductModel.findOne({ slug })
   }
   return {
     props: {
