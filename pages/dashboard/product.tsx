@@ -284,7 +284,7 @@ const NewAndUpdateProductPage = () => {
                       </span>
                       {isArray && (
                         <input
-                          className="flex h-10 w-10 appearance-none items-center justify-center rounded-lg border-none bg-primary-gray4/70 outline-none focus:ring-0"
+                          className="flex h-10 w-10 appearance-none items-center justify-center rounded-lg border-none bg-primary-gray4/70 outline-none scrollbar-thin scrollbar-track-primary-gray2 focus:ring-0 md:w-14"
                           type="number"
                           value={counter[i]}
                           min={0}
