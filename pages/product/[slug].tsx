@@ -45,19 +45,19 @@ const ProductDetailPage = ({
                   : 'Unknown Product Description'
               }
             />
-            {product?.items?.benefits && (
+            {product?.items?.benefits && product?.items?.benefits.length > 0 && (
               <ItemList title="Benefits" items={product?.items?.benefits} />
             )}
-            {product?.items?.ingredients && (
+            {product?.items?.ingredients && product?.items?.ingredients.length > 0 && (
               <ItemList
                 title="Ingredients"
                 items={product?.items?.ingredients}
               />
             )}
-            {product?.items?.dosage && (
+            {product?.items?.dosage && product?.items?.dosage?.length > 0 && (
               <ItemList title="Dosage" items={product?.items?.dosage} />
             )}
-            {product?.items?.packSize && (
+            {product?.items?.packSize && product?.items?.packSize.length > 0 && (
               <ItemList title="Pack Size(s)" items={product?.items?.packSize} />
             )}
           </div>

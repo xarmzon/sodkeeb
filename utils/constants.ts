@@ -1,4 +1,5 @@
 import { NavLink } from './types'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
 export const APP_NAME = 'SODKEEB TRADO MEDICAL CENTER'
 export const DEFAULT_SEO = {
@@ -6,6 +7,21 @@ export const DEFAULT_SEO = {
   defaultTitle: APP_NAME,
   titleTemplate: `%s | ${APP_NAME}`,
   description: 'Home of Good Herbal products',
+  openGraph: {
+    type: 'website',
+    url: SITE_URL,
+    title: APP_NAME,
+    description: `${APP_NAME}, is a medical health center that has solutions to your problems such as Infertility, Weak Erection, Back & Waist Pain,Pile Related problems,Sexually Transmitted Diseases,Genital Infections,Diabetes,Gonorrhea,Low Sperm Count,Staphylococcus,Fibroid,Ulcer and all Internal & External health issues
+    using Herbal and Natural Products.`,
+    images: [
+      {
+        url: `${SITE_URL}/images/sodkeeb_slider1.jpg`,
+        width: 573,
+        height: 409,
+        alt: `${APP_NAME} open graph image`,
+      },
+    ],
+  },
 }
 export const USER_TYPES = {
   ADMIN: 1,
@@ -57,7 +73,8 @@ export const MESSAGES = {
   FETCH_LOADING_SUCCESS: 'Data Fetched successfully',
   PRODUCT_FETCH_SUCCESS: 'Products data fetched successfully',
   FETCH_LOADING_DATA: 'Loading Data.........',
-  NO_DATA_TO_DISPLAY: 'SORRY! NO PRODUCT DATA TO DISPLAY RIGHT NOW. PLEASE CHECK BACK LATER',
+  NO_DATA_TO_DISPLAY:
+    'SORRY! NO PRODUCT DATA TO DISPLAY RIGHT NOW. PLEASE CHECK BACK LATER',
   NO_ACCESS_TO_ROUTE: "Oops! You don't have access to this page",
   GENERAL_ERROR_MESSAGE:
     'Oops! Something went wrong with your request. please try again',
