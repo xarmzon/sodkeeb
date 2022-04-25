@@ -25,7 +25,10 @@ export type Product = {
   slug: string
   items: ProductItems
 }
-
+export type NewProduct = Omit<Product, 'slug'>
+export type UpdateProduct = NewProduct & {
+  _id: string
+}
 export type TProductItem = Product & {
   createdAt: string
   _id: string

@@ -9,8 +9,10 @@ import { MESSAGES } from '@utils/constants'
 import toast from 'react-hot-toast'
 import { getErrorMessage } from '@utils/index'
 import api from '@utils/fetcher'
+import { useRouter } from 'next/router'
 
 const ProductsDashboard = () => {
+  const router = useRouter()
   const {
     data,
     loading: dataLoading,
@@ -26,7 +28,8 @@ const ProductsDashboard = () => {
 
   const [loading, setLoading] = useState<boolean>(false)
   const handleEdit = (id: string) => {
-    console.log(`Edit: ${id}`)
+    setLoading(true)
+    router.push(`${ROUTES.DASHBOARD.PRODUCT}?product=${id}`)
   }
   const handleDelete = async (id: string) => {
     const title = data?.results?.find((d: TProductItem) => d._id === id)?.title

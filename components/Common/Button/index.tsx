@@ -26,7 +26,7 @@ const Button = (props: IButton) => {
   ) : (
     <button
       {...rest}
-      className="group relative z-[3] max-w-max cursor-pointer rounded-full bg-linearG2 px-3 py-1 text-gray-200 sm:px-4 sm:py-2"
+      className="group relative z-[3] max-w-max cursor-pointer rounded-full bg-linearG2 px-3 py-1 text-gray-200 disabled:pointer-events-none sm:px-4 sm:py-2"
     >
       <span className="text-sm sm:text-base">{text}</span>
       <span className="absolute left-1/2 -bottom-2 -z-[1] h-full w-[80%] -translate-x-1/2 rounded-full bg-primary-green2 blur-sm transition-all duration-500 group-hover:w-[65%] group-hover:blur-md" />

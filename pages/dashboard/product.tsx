@@ -3,28 +3,28 @@ import Layout from '@components/Dashboard/Layout'
 import ProductImage from '@components/ProductDetails/ProductImage'
 import { getErrorMessage } from '@utils/index'
 import { ALLOWED_FILE_SIZE_DP, ROUTES } from '@utils/constants'
-import { Product, ProductItems } from '@utils/types'
+import { NewProduct, ProductItems, UpdateProduct } from '@utils/types'
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { BiPlusCircle } from 'react-icons/bi'
 import api from '@utils/fetcher'
 import { useRouter } from 'next/router'
+import Loader from '@components/Common/Loader'
 
 const addProductText = 'Add Product'
-const updateProductText = "Update Product"
+const updateProductText = 'Update Product'
 
 const NewProductPage = () => {
   const imageInputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
+  const { product } = router.query
 
-  useEffect(()=>{
-    const {product} = router.query
-    console.log(`Product ID: ${product}`)
-  },[router.query])
-
+  const [loading, setLoading] = useState<boolean>(false)
   const [showUploadSpinner, setShowUploadSpinner] = useState<boolean>(false)
-  const [submitText, setSubmitText] = useState(addProductText)
-  const [formData, setFormData] = useState<Omit<Product, 'slug'>>({
+  const [submitText, setSubmitText] = useState<string>(() =>
+    product ? updateProductText : addProductText
+  )
+  const [formData, setFormData] = useState<NewProduct | UpdateProduct>({
     title: '',
     image: '',
     description: '',
@@ -49,6 +49,32 @@ const NewProductPage = () => {
       toast.dismiss()
     }
   }, [showUploadSpinner])
+
+  useEffect(() => {
+    const getProduct = async () => {
+      if (product) {
+        setLoading(true)
+        try {
+          const {
+            data: { product: pd },
+          } = await api.get(
+            `${ROUTES.API.PRODUCTS}?type=single&product=${product}`
+          )
+          setSubmitText(updateProductText)
+          setCounter([
+            ...Object.keys(pd.items)
+              .filter((key) => key !== 'dosage' && key !== 'packSize')
+              .map((d) => pd.items[d].length || 2),
+          ])
+          setFormData(pd)
+        } catch (err) {
+          toast.error(getErrorMessage(err))
+        }
+        setLoading(false)
+      }
+    }
+    getProduct()
+  }, [product])
 
   const openDialogForImage = () => {
     if (!showUploadSpinner || submitText === addProductText)
@@ -138,161 +164,185 @@ const NewProductPage = () => {
       }))
     }
   }
-  const saveProduct = async (e: FormEvent<HTMLFormElement>) => {
+
+  const handledSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (submitText !== addProductText) return
+    if (submitText !== addProductText && submitText !== updateProductText)
+      return
     if (formData.image.length < 1) {
       toast.error('Please choose an image for the project')
       return
     }
-    toast.loading('Saving Product...')
-    setSubmitText('Saving...')
+    if (submitText === updateProductText) {
+      toast.loading('Updating Product...')
+      setSubmitText('Updating...')
+    } else {
+      toast.loading('Saving Product...')
+      setSubmitText('Saving...')
+    }
     try {
+      const apiD = submitText === updateProductText ? api.put : api.post
       const {
         data: { msg },
-      } = await api.post(ROUTES.API.PRODUCTS, { ...formData })
+      } = await apiD(ROUTES.API.PRODUCTS, { ...formData })
       toast.dismiss()
       toast.success(msg)
-      setFormData({
-        title: '',
-        image: '',
-        description: '',
-        items: {
-          benefits: [
-            ...Array(formData.items.benefits?.length || 2)
-              .fill(0)
-              .map((d) => ''),
-          ],
-          ingredients: [
-            ...Array(formData.items.ingredients?.length || 2)
-              .fill(0)
-              .map((d) => ''),
-          ],
-          dosage: '',
-          packSize: '',
-        },
-      })
+
+      if (submitText === addProductText) {
+        setFormData({
+          title: '',
+          image: '',
+          description: '',
+          items: {
+            benefits: [
+              ...Array(formData.items.benefits?.length || 2)
+                .fill(0)
+                .map((d) => ''),
+            ],
+            ingredients: [
+              ...Array(formData.items.ingredients?.length || 2)
+                .fill(0)
+                .map((d) => ''),
+            ],
+            dosage: '',
+            packSize: '',
+          },
+        })
+      }
     } catch (error) {
       toast.dismiss()
       toast.error(getErrorMessage(error))
     }
-    setSubmitText(addProductText)
+    if (product) {
+      setSubmitText(updateProductText)
+    } else {
+      setSubmitText(addProductText)
+    }
   }
 
   return (
-    <Layout title="New Product">
-      <div className="mb-8 flex flex-col space-y-8 md:flex-row-reverse md:space-y-0">
-        <div
-          onClick={openDialogForImage}
-          className={`group relative w-full overflow-hidden rounded-lg bg-gray-400 transition-all duration-500 md:w-[55%] ${
-            !formData.image ? 'h-[280px] md:h-[380px]' : 'h-max'
-          }`}
-        >
-          <span
-            className={`absolute inset-0 z-[35] h-full w-full cursor-pointer items-center justify-center bg-primary-dark1/90 text-4xl text-white/40 transition-all duration-500 ${
-              formData.image ? 'hidden group-hover:flex' : 'flex'
+    <Layout title={product ? 'Update Product' : 'New Product'}>
+      {loading ? (
+        <div className="">
+          <Loader text="Loading Data..." />
+        </div>
+      ) : (
+        <div className="mb-8 flex flex-col space-y-8 md:flex-row-reverse md:space-y-0">
+          <div
+            onClick={openDialogForImage}
+            className={`group relative w-full overflow-hidden rounded-lg bg-gray-400 transition-all duration-500 md:w-[55%] ${
+              !formData.image ? 'h-[280px] md:h-[380px]' : 'h-max'
             }`}
           >
-            <BiPlusCircle />
-          </span>
-          {formData.image && <ProductImage src={formData.image} />}
-          <input
-            ref={imageInputRef}
-            className="hidden"
-            type="file"
-            accept=".jpg, .jpeg, .png"
-            onChange={handleImageUpload}
-          />
-        </div>
-        <div className="w-full md:mr-5 md:w-[45%] lg:mr-8">
-          <form onSubmit={saveProduct} className="flex flex-col space-y-5">
-            <div className="flex flex-col">
-              <input
-                className="rounded-lg border-none bg-primary-gray4/70 text-primary-green2 shadow-sm outline-none focus:shadow-lg focus:ring-0"
-                type="text"
-                name="title"
-                onChange={handleChange}
-                value={formData.title}
-                placeholder="Product Title"
-                required
-              />
-            </div>
-            <div className="flex flex-col">
-              <textarea
-                className="h-40 resize-none rounded-lg border-none bg-primary-gray4/70 text-primary-green2 shadow-sm outline-none scrollbar-thin scrollbar-track-slate-300 focus:shadow-lg focus:ring-0"
-                name="description"
-                onChange={handleChange}
-                value={formData.description}
-                placeholder="Product Description"
-                required
-              />
-            </div>
-            {Object.keys(formData.items).map((key, i) => {
-              const isArray =
-                typeof formData.items[key as keyof ProductItems] === 'object'
-              return (
-                <div key={i} className="flex flex-col space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="flex-1 font-semibold capitalize">
-                      {key === 'packSize' ? 'Pack Size' : key}:
-                    </span>
-                    {isArray && (
-                      <input
-                        className="flex h-10 w-10 appearance-none items-center justify-center rounded-lg border-none bg-primary-gray4/70 outline-none focus:ring-0"
-                        type="number"
-                        value={counter[i]}
-                        min={0}
-                        onChange={(e) =>
-                          handleCounter(i, Number(e.target.value), key)
-                        }
-                      />
-                    )}
-                  </div>
-                  {[...Array(counter[i])].map((_, i) => {
-                    const nameText = /s$/.test(key)
-                      ? key
-                          .split('')
-                          .filter((_, i) => i !== key.length - 1)
-                          .join('')
-                      : key
-                    const k = key as keyof ProductItems
-                    const value = isArray
-                      ? formData.items[k]![i]
-                      : formData.items[k]
+            <span
+              className={`absolute inset-0 z-[35] h-full w-full cursor-pointer items-center justify-center bg-primary-dark1/90 text-4xl text-white/40 transition-all duration-500 ${
+                formData.image ? 'hidden group-hover:flex' : 'flex'
+              }`}
+            >
+              <BiPlusCircle />
+            </span>
+            {formData.image && <ProductImage src={formData.image} />}
+            <input
+              ref={imageInputRef}
+              className="hidden"
+              type="file"
+              accept=".jpg, .jpeg, .png"
+              onChange={handleImageUpload}
+            />
+          </div>
+          <div className="w-full md:mr-5 md:w-[45%] lg:mr-8">
+            <form onSubmit={handledSubmit} className="flex flex-col space-y-5">
+              <div className="flex flex-col">
+                <input
+                  className="rounded-lg border-none bg-primary-gray4/70 text-primary-green2 shadow-sm outline-none focus:shadow-lg focus:ring-0"
+                  type="text"
+                  name="title"
+                  onChange={handleChange}
+                  value={formData.title}
+                  placeholder="Product Title"
+                  required
+                />
+              </div>
+              <div className="flex flex-col">
+                <textarea
+                  className="h-40 resize-none rounded-lg border-none bg-primary-gray4/70 text-primary-green2 shadow-sm outline-none scrollbar-thin scrollbar-track-slate-300 focus:shadow-lg focus:ring-0"
+                  name="description"
+                  onChange={handleChange}
+                  value={formData.description}
+                  placeholder="Product Description"
+                  required
+                />
+              </div>
+              {Object.keys(formData.items).map((key, i) => {
+                const isArray =
+                  typeof formData.items[key as keyof ProductItems] === 'object'
+                return (
+                  <div key={i} className="flex flex-col space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="flex-1 font-semibold capitalize">
+                        {key === 'packSize' ? 'Pack Size' : key}:
+                      </span>
+                      {isArray && (
+                        <input
+                          className="flex h-10 w-10 appearance-none items-center justify-center rounded-lg border-none bg-primary-gray4/70 outline-none focus:ring-0"
+                          type="number"
+                          value={counter[i]}
+                          min={0}
+                          onChange={(e) =>
+                            handleCounter(i, Number(e.target.value), key)
+                          }
+                        />
+                      )}
+                    </div>
+                    {[...Array(counter[i])].map((_, i) => {
+                      const nameText = /s$/.test(key)
+                        ? key
+                            .split('')
+                            .filter((_, i) => i !== key.length - 1)
+                            .join('')
+                        : key
+                      const k = key as keyof ProductItems
+                      const value = isArray
+                        ? formData.items[k]![i]
+                        : formData.items[k]
 
-                    return (
-                      <input
-                        key={i}
-                        className="rounded-lg border-none bg-primary-gray4/70 text-primary-green2 shadow-sm outline-none placeholder:capitalize focus:shadow-lg focus:ring-0"
-                        type="text"
-                        name={key}
-                        onChange={(e) =>
-                          handleChange(e, true, isArray ? i : undefined)
-                        }
-                        value={value}
-                        placeholder={`${
-                          isArray
-                            ? nameText + ' text ' + (i + 1)
-                            : 'Enter the ' +
-                              (/Size/.test(nameText) ? 'Pack Size' : nameText)
-                        }`}
-                        required={isArray}
-                      />
-                    )
-                  })}
-                </div>
-              )
-            })}
-            <div className="flex flex-col items-center justify-center">
-              <Button
-                type="submit"
-                text={submitText}
-                disabled={submitText !== addProductText}
-              />
-            </div>
-          </form>
+                      return (
+                        <input
+                          key={i}
+                          className="rounded-lg border-none bg-primary-gray4/70 text-primary-green2 shadow-sm outline-none placeholder:capitalize focus:shadow-lg focus:ring-0"
+                          type="text"
+                          name={key}
+                          onChange={(e) =>
+                            handleChange(e, true, isArray ? i : undefined)
+                          }
+                          value={value}
+                          placeholder={`${
+                            isArray
+                              ? nameText + ' text ' + (i + 1)
+                              : 'Enter the ' +
+                                (/Size/.test(nameText) ? 'Pack Size' : nameText)
+                          }`}
+                          required={isArray}
+                        />
+                      )
+                    })}
+                  </div>
+                )
+              })}
+              <div className="flex flex-col items-center justify-center">
+                <Button
+                  type="submit"
+                  text={submitText}
+                  disabled={Boolean(
+                    submitText !== addProductText &&
+                      submitText !== updateProductText
+                  )}
+                />
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+      )}
     </Layout>
   )
 }
