@@ -55,14 +55,12 @@ const Product = ({
           },
         }}
         viewport={{ once: true }}
-        className="flex flex-1 shrink-0 flex-col space-y-3 md:space-y-5"
+        className="flex flex-1 shrink-0 flex-col space-y-3 md:space-y-5 lg:space-y-8"
       >
-        <h3 className="text-lg font-bold line-clamp-2 sm:text-xl lg:text-3xl">
+        <h3 className="text-xl font-bold line-clamp-2 sm:text-2xl md:text-3xl lg:text-4xl">
           {title}
         </h3>
-        <p className="text-sm line-clamp-5 sm:text-base lg:text-lg">
-          {description}
-        </p>
+        <p className="line-clamp-5 md:text-lg lg:text-xl">{description}</p>
         <Button link={link} text="Product Details" isLink />
       </motion.div>
     </div>
