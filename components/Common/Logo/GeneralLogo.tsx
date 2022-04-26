@@ -20,7 +20,7 @@ const GeneralLogo = ({
     <Link href="/">
       <a
         className={`relative mr-6 flex shrink-0 items-center justify-center rounded-full p-2 ${
-          hasBackground ? 'bg-black' : ''
+          hasBackground ? 'bg-gray-100' : ''
         } ${
           useSmall
             ? '!mt-0 h-16 w-16 sm:!mt-0'

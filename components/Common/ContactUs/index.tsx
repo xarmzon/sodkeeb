@@ -52,8 +52,22 @@ const ContactUs = () => {
         <h3 className="text-lg font-bold text-primary-gray1 lg:text-xl">
           We are here for you! How can we help?
         </h3>
-
-        <form onSubmit={sendMail}>
+        <div className="mt-5 flex flex-col space-y-8">
+          <div>
+            <h4 className="text-base font-bold sm:text-lg">Head Office:</h4>
+            <p className="text-sm sm:text-base">
+              No. 1, Oye Olorun Avenue, FOS Estate behind Community Primary
+              School Ogunbade Onihale, Ifo, Ogun State.
+            </p>
+          </div>
+          <div>
+            <h4 className="text-base font-bold sm:text-lg">Branch Office:</h4>
+            <p className="text-sm sm:text-base">
+              No. 1, Owoseni Street, Bolade Oshodi, Lagos.
+            </p>
+          </div>
+        </div>
+        {/* <form onSubmit={sendMail}>
           <div className="flex flex-col space-y-8">
             <input
               name="name"
@@ -87,7 +101,7 @@ const ContactUs = () => {
           <div className="mt-5">
             <Button text="Send Message" />
           </div>
-        </form>
+        </form> */}
       </div>
       <div className="mb-8 flex w-full shrink-0 flex-col space-y-8 sm:mb-0 sm:w-[55%] lg:space-y-10">
         <h3 className="text-4xl font-bold text-primary-green sm:text-5xl lg:text-6xl xl:text-7xl">
