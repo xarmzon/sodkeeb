@@ -18,11 +18,7 @@ const GeneralHeader = () => {
   }
   return (
     <header className="container w-full">
-      <GeneralNavbar
-        navOpen={navOpen}
-        toggleMobileNav={toggleMobileNav}
-        navItems={NAV_ITEMS}
-      />
+      <GeneralNavbar toggleMobileNav={toggleMobileNav} navItems={NAV_ITEMS} />
       <MobileNavbar
         navOpen={navOpen}
         toggleMobileNav={toggleMobileNav}

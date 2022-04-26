@@ -7,12 +7,15 @@ import { useState } from 'react'
 import useSticky from '@hooks/useSticky'
 import { INavbar } from '@utils/types'
 
-const GeneralNavbar = ({ navItems, navOpen, toggleMobileNav }: INavbar) => {
+const GeneralNavbar = ({
+  navItems,
+  toggleMobileNav,
+}: Omit<INavbar, 'navOpen'>) => {
   const { sticky } = useSticky()
 
   return (
     <nav
-      className={`z-[99] flex h-20 w-full items-center justify-between px-5 text-gray-100 md:px-8 ${
+      className={`z-[99] flex h-16 w-full items-center justify-between px-5 text-gray-100 md:px-8 ${
         sticky
           ? 'fixed top-0 bg-gradient-to-b from-primary-green2/90 to-primary-green/80 backdrop-blur-sm'
           : 'relative bg-linearG'

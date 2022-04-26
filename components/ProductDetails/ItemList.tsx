@@ -16,7 +16,9 @@ const ItemList = ({ title, items }: IItemList) => {
       }}
       className="flex flex-col space-y-2"
     >
-      <h2 className="text-xl font-bold md:text-2xl lg:text-3xl">{title}</h2>
+      <h2 className="text-xl font-bold capitalize md:text-2xl lg:text-3xl">
+        {title}
+      </h2>
       {typeof items === 'string' ? (
         <p className="sm:text-lg lg:text-xl">{items}</p>
       ) : items.length === 1 ? (

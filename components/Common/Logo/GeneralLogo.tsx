@@ -23,7 +23,7 @@ const GeneralLogo = ({
           hasBackground ? 'bg-gray-100' : ''
         } ${
           useSmall
-            ? '!mt-0 h-16 w-16 sm:!mt-0'
+            ? '!mt-0 h-14 w-14 sm:!mt-0'
             : 'mt-10 h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28'
         } ${
           !sticky ? 'shadow-md' : 'shadow-none'

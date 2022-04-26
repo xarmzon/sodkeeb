@@ -45,21 +45,16 @@ const ProductDetailPage = ({
                   : 'Unknown Product Description'
               }
             />
-            {product?.items?.benefits && product?.items?.benefits.length > 0 && (
-              <ItemList title="Benefits" items={product?.items?.benefits} />
-            )}
-            {product?.items?.ingredients && product?.items?.ingredients.length > 0 && (
-              <ItemList
-                title="Ingredients"
-                items={product?.items?.ingredients}
-              />
-            )}
-            {product?.items?.dosage && product?.items?.dosage?.length > 0 && (
-              <ItemList title="Dosage" items={product?.items?.dosage} />
-            )}
-            {product?.items?.packSize && product?.items?.packSize.length > 0 && (
-              <ItemList title="Pack Size(s)" items={product?.items?.packSize} />
-            )}
+            {product &&
+              product?.items &&
+              Object.entries(product.items)
+                .filter(([_, val]) => val.length > 0)
+                .map(([key, val], i: number) => {
+                  const title = /([a-z0-9])([A-Z])/.test(key)
+                    ? key.replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+                    : key
+                  return <ItemList key={i} title={title} items={val} />
+                })}
           </div>
         </div>
       </div>

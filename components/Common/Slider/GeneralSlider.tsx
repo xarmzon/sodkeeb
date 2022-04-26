@@ -8,7 +8,7 @@ import Image from 'next/image'
 
 const GeneralSlider = () => {
   return (
-    <div className="relative h-[calc(50vh-48px)] sm:h-[calc(60vh-48px)] md:h-[calc(70vh-48px)] lg:h-[calc(75vh-48px)] xl:h-[calc(90vh-48px)]">
+    <div className="relative h-[calc(50vh)] sm:h-[calc(60vh)] md:h-[calc(70vh)] lg:h-[calc(75vh)] xl:h-[calc(90vh)]">
       <Swiper
         pagination={{
           clickable: true,
