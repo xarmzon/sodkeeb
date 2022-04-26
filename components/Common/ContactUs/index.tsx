@@ -52,7 +52,7 @@ const ContactUs = () => {
         <h3 className="text-lg font-bold text-primary-gray1 lg:text-xl">
           We are here for you! How can we help?
         </h3>
-        <div className="mt-5 flex flex-col space-y-8">
+        <div className="mt-5 flex flex-col space-y-8 text-primary-gray3">
           <div>
             <h4 className="text-base font-bold sm:text-lg">Head Office:</h4>
             <p className="text-sm sm:text-base">
