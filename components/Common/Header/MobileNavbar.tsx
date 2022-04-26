@@ -11,7 +11,7 @@ const MobileNavbar = ({ navItems, navOpen, toggleMobileNav }: INavbar) => {
         navOpen ? 'z-[9999] h-screen opacity-100' : 'z-[1] h-0 opacity-0'
       } transition-all duration-700`}
     >
-      <BiX className="absolute top-3 right-5 cursor-pointer text-2xl transition-all duration-700 hover:rotate-[20deg]" />
+      <BiX className="absolute top-3 right-5 cursor-pointer text-4xl transition-all duration-700 hover:rotate-[20deg]" />
       <div className="flex h-full w-full flex-col items-center space-y-8 p-5 pt-10">
         {navItems.map((item, i) => (
           <Link href={item.link} key={i}>

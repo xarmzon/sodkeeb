@@ -12,7 +12,7 @@ const GeneralNavbar = ({ navItems, navOpen, toggleMobileNav }: INavbar) => {
 
   return (
     <nav
-      className={`z-[99] flex h-12 w-full items-center justify-between px-5 text-gray-100 md:px-8 ${
+      className={`z-[99] flex h-20 w-full items-center justify-between px-5 text-gray-100 md:px-8 ${
         sticky
           ? 'fixed top-0 bg-gradient-to-b from-primary-green2/90 to-primary-green/80 backdrop-blur-sm'
           : 'relative bg-linearG'
@@ -31,7 +31,7 @@ const GeneralNavbar = ({ navItems, navOpen, toggleMobileNav }: INavbar) => {
       </div>
       <BiMenu
         onClick={toggleMobileNav}
-        className="cursor-pointer text-2xl sm:hidden"
+        className="cursor-pointer text-4xl sm:hidden"
       />
     </nav>
   )

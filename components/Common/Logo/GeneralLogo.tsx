@@ -23,8 +23,8 @@ const GeneralLogo = ({
           hasBackground ? 'bg-gray-100' : ''
         } ${
           useSmall
-            ? '!mt-0 h-10 w-10 sm:!mt-0'
-            : 'mt-10 h-14 w-14 sm:h-16 sm:w-16 lg:h-20 lg:w-20'
+            ? '!mt-0 h-16 w-16 sm:!mt-0'
+            : 'mt-10 h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28'
         } ${
           !sticky ? 'shadow-md' : 'shadow-none'
         } transition-all duration-500 ${className}`}

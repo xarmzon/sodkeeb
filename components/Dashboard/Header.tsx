@@ -28,7 +28,7 @@ const Header = () => {
   const { sticky } = useSticky()
   return (
     <header
-      className={`fixed top-0 z-[999] flex h-16 w-full items-center justify-between p-5 lg:p-8 ${
+      className={`fixed top-0 z-[999] flex h-20 w-full items-center justify-between p-5 lg:p-8 ${
         sticky ? 'bg-gray-100/40 shadow-lg backdrop-blur-[2px]' : 'bg-gray-100'
       } transition-all duration-700`}
     >
