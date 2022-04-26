@@ -18,7 +18,7 @@ const GeneralNavbar = ({ navItems, navOpen, toggleMobileNav }: INavbar) => {
           : 'relative bg-linearG'
       } transition-all duration-700`}
     >
-      <GeneralLogo />
+      <GeneralLogo sticky={sticky} useSmall={sticky} />
       <div className="hidden flex-1 justify-end space-x-5 sm:flex lg:space-x-8 lg:text-lg">
         {navItems.map((item, i) => (
           <Link href={item.link} key={i}>

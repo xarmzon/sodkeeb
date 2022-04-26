@@ -32,7 +32,12 @@ const Header = () => {
         sticky ? 'bg-gray-100/40 shadow-lg backdrop-blur-[2px]' : 'bg-gray-100'
       } transition-all duration-700`}
     >
-      <GeneralLogo />
+      <GeneralLogo
+        sticky={sticky}
+        useSmall={sticky}
+        hasBackground={false}
+        className="!mt-5 sm:!mt-8"
+      />
       <nav className="flex flex-1 items-center justify-center space-x-5 sm:space-x-8">
         {DASHBOARD_NAV.map((item, i) => (
           <Link key={i} href={item.link}>
