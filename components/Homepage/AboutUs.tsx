@@ -43,9 +43,10 @@ const AboutUs = () => {
           className="flex w-full flex-col space-y-3"
         >
           <p className="">
-            {APP_NAME} is a medical health center that has solutions to your
-            problems such as Infertility, Weak Erection, Back & Waist Pain, Pile
-            Related problems, Sexually Transmitted Diseases, Genital Infections,
+            <span className="font-semibold">{APP_NAME}</span> is a medical
+            health center that has solutions to your problems such as
+            Infertility, Weak Erection, Back & Waist Pain, Pile Related
+            problems, Sexually Transmitted Diseases, Genital Infections,
             Diabetes, Gonorrhea, Low Sperm Count, Staphylococcus, Fibroid, Ulcer
             and all Internal & External health issues using Herbal and Natural
             Products.
