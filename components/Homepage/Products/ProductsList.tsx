@@ -3,7 +3,7 @@ import Pagination from '@components/Pagination'
 import usePaginatedFetch from '@hooks/usePaginatedFetch'
 import { MESSAGES, ROUTES } from '@utils/constants'
 import { Product as ProductType, TProductItem } from '@utils/types'
-import React from 'react'
+import React, { useRef } from 'react'
 import Product from './Product'
 
 interface IProductsList {
@@ -11,6 +11,7 @@ interface IProductsList {
 }
 
 const ProductsList = () => {
+  const scrollToRef = useRef<HTMLDivElement>(null)
   const {
     data,
     loading: dataLoading,
@@ -20,6 +21,7 @@ const ProductsList = () => {
     page,
     mutate,
   } = usePaginatedFetch(ROUTES.API.PRODUCTS)
+
   return (
     <div className="mt-10 flex w-full flex-col space-y-16 md:mt-12 lg:mt-14">
       {dataLoading ? (
@@ -30,7 +32,10 @@ const ProductsList = () => {
         <div className="h-full w-full">
           {data?.results?.length > 0 ? (
             <>
-              <div className="flex w-full flex-col space-y-14 md:space-y-16 lg:space-y-20">
+              <div
+                ref={scrollToRef}
+                className="flex w-full flex-col space-y-14 md:space-y-16 lg:space-y-20"
+              >
                 {data?.results?.map((item: TProductItem, i: number) => (
                   <Product
                     link={`${ROUTES.PRODUCT_DETAILS}/${item.slug}`}
@@ -42,10 +47,12 @@ const ProductsList = () => {
                   />
                 ))}
               </div>
-              <div className="mt-10 flex w-full justify-center">
+              <div className="my-16 flex w-full justify-center lg:mt-24">
                 <Pagination
                   paging={data?.paging}
                   handlePage={handlePagination}
+                  scrollToRef={scrollToRef}
+                  scrollToOffset={180}
                 />
               </div>
             </>

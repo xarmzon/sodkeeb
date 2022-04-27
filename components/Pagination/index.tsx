@@ -5,13 +5,28 @@ import { FaChevronCircleLeft, FaChevronCircleRight } from 'react-icons/fa'
 interface IPagination {
   paging: IPaging
   handlePage: (page: number) => void
+  scrollToRef?: React.RefObject<HTMLElement>
+  scrollToOffset?: number
 }
 
 const Pagination = ({
   paging: { page, perPage, totalItems, totalPages },
   handlePage,
+  scrollToRef,
+  scrollToOffset = 110,
 }: IPagination) => {
+  const handleScrollTo = () => {
+    if (scrollToRef && scrollToRef?.current) {
+      const elTop =
+        scrollToRef.current.getBoundingClientRect().top +
+        window.scrollY -
+        scrollToOffset
+      window.scroll({ top: elTop, behavior: 'smooth' })
+    }
+  }
+
   const handleChange = (type: 'next' | 'prev') => {
+    handleScrollTo()
     switch (type) {
       case 'next':
         // console.log(page + 1)

@@ -3,7 +3,7 @@ import Layout from '@components/Dashboard/Layout'
 import ProductItem from '@components/Dashboard/ProductItem'
 import usePaginatedFetch from '@hooks/usePaginatedFetch'
 import { ROUTES } from '@utils/constants'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { TProductItem } from '@utils/types'
 import { MESSAGES } from '@utils/constants'
 import toast from 'react-hot-toast'
@@ -13,6 +13,7 @@ import { useRouter } from 'next/router'
 import Pagination from '@components/Pagination'
 
 const ProductsDashboard = () => {
+  const scrollToRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
   const {
     data,
@@ -58,7 +59,7 @@ const ProductsDashboard = () => {
       ) : (
         <div className="mx-auto flex min-h-[55vh] w-full max-w-3xl flex-col space-y-10">
           {data?.results?.length > 0 ? (
-            <div className="h-full w-full">
+            <div ref={scrollToRef} className="h-full w-full">
               <div className="flex w-full flex-col space-y-8">
                 {data?.results?.map((item: TProductItem, i: number) => (
                   <ProductItem
@@ -77,6 +78,7 @@ const ProductsDashboard = () => {
                 <Pagination
                   paging={data?.paging}
                   handlePage={handlePagination}
+                  scrollToRef={scrollToRef}
                 />
               </div>
             </div>

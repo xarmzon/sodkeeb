@@ -23,6 +23,7 @@ const ProductSchema = new Schema<Product>(
       benefits: [String],
       ingredients: [String],
       dosage: [String],
+      nafdacNo: String,
       packSize: String,
     },
   },

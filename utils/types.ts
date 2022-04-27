@@ -13,10 +13,11 @@ export type MessageForm = {
   message: string
 }
 export type ProductItems = {
-  packSize: string
-  dosage?: string[]
   benefits?: string[]
   ingredients?: string[]
+  dosage?: string[]
+  nafdacNo?: string
+  packSize?: string
 }
 export type Product = {
   title: string

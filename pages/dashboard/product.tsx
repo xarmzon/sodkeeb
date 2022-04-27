@@ -32,6 +32,7 @@ const NewAndUpdateProductPage = () => {
       benefits: ['', ''],
       ingredients: ['', ''],
       dosage: ['', ''],
+      nafdacNo: '',
       packSize: '',
     },
   })
@@ -207,6 +208,7 @@ const NewAndUpdateProductPage = () => {
               ...Array(formData.items.ingredients?.length || 2).fill(''),
             ],
             dosage: [...Array(formData.items.dosage?.length || 2).fill('')],
+            nafdacNo: '',
             packSize: '',
           },
         })
