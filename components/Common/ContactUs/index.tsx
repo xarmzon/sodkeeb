@@ -110,7 +110,7 @@ const ContactUs = () => {
         <p className="lg:text-lg">
           Connect with us by clicking any of the links below
         </p>
-        <div className="grid grid-cols-3 gap-y-5 sm:grid-cols-4">
+        <div className="grid grid-cols-3 gap-y-5 sm:grid-cols-4 lg:grid-cols-6">
           <a
             href="https://wa.me/message/DQREHY6Y7AYHB1"
             target="_blank"

@@ -28,7 +28,7 @@ const Header = () => {
   const { sticky } = useSticky()
   return (
     <header
-      className={`fixed top-0 z-[999] flex h-20 w-full items-center justify-between p-5 lg:p-8 ${
+      className={`fixed top-0 z-[999] flex h-16 w-full items-center justify-between p-5 lg:p-8 ${
         sticky ? 'bg-gray-100/40 shadow-lg backdrop-blur-[2px]' : 'bg-gray-100'
       } transition-all duration-700`}
     >
@@ -36,7 +36,7 @@ const Header = () => {
         sticky={sticky}
         useSmall={sticky}
         hasBackground={false}
-        className="!mt-5 sm:!mt-8"
+        //className="!mt-5 sm:!mt-8 md:!"
       />
       <nav className="flex flex-1 items-center justify-center space-x-5 sm:space-x-8">
         {DASHBOARD_NAV.map((item, i) => (

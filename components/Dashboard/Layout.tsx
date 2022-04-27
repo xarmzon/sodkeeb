@@ -31,7 +31,7 @@ const Layout = ({ title, children }: ILayout) => {
 
         <section className="px-5 pt-20 lg:px-8">
           {loggedIn && (
-            <div className="my-10 text-lg font-semibold text-primary-gray3/70">
+            <div className="my-10 text-lg font-semibold text-primary-gray3/70 md:mt-12 lg:mt-14">
               {title ?? 'Dashboard'}
             </div>
           )}

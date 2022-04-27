@@ -24,7 +24,7 @@ const GeneralLogo = ({
         } ${
           useSmall
             ? '!mt-0 h-14 w-14 sm:!mt-0'
-            : 'mt-10 h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28'
+            : 'mt-10 h-20 w-20 sm:h-24 sm:w-24 md:mt-12 lg:mt-14 lg:h-28 lg:w-28'
         } ${
           !sticky ? 'shadow-md' : 'shadow-none'
         } transition-all duration-500 ${className}`}
