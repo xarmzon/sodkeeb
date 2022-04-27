@@ -11,7 +11,7 @@ export const DEFAULT_SEO = {
     type: 'website',
     url: SITE_URL,
     title: APP_NAME,
-    description: `${APP_NAME}, is a medical health center that has solutions to your problems such as Infertility, Weak Erection, Back & Waist Pain,Pile Related problems,Sexually Transmitted Diseases,Genital Infections,Diabetes,Gonorrhea,Low Sperm Count,Staphylococcus,Fibroid,Ulcer and all Internal & External health issues
+    description: `${APP_NAME} is a medical health center that has solutions to your problems such as Infertility, Weak Erection, Back & Waist Pain,Pile Related problems,Sexually Transmitted Diseases,Genital Infections,Diabetes,Gonorrhea,Low Sperm Count,Staphylococcus,Fibroid,Ulcer and all Internal & External health issues
     using Herbal and Natural Products.`,
     images: [
       {
