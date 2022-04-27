@@ -97,7 +97,10 @@ class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#ffffff" />
           <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
           <meta name="theme-color" content="#ffffff" />
-          <meta name="google-site-verification" content="K1CL9hUFgcmLDXkdoC6UZ0fUUK9n13vY40Oh4ZIWKxo" />
+          <meta
+            name="google-site-verification"
+            content="K1CL9hUFgcmLDXkdoC6UZ0fUUK9n13vY40Oh4ZIWKxo"
+          />
         </Head>
         <body className="font-raleway relative min-h-screen w-full !overflow-x-hidden text-primary-dark1 scrollbar-thin scrollbar-track-primary-gray4">
           <Main />

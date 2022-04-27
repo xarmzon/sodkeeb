@@ -17,6 +17,7 @@ import {
   setUser,
 } from '@redux/slice/auth'
 import { Provider } from 'react-redux'
+import Script from 'next/script'
 
 NProgress.configure({ showSpinner: false })
 
@@ -60,6 +61,19 @@ function MyApp({ Component, pageProps, router }: AppProps) {
 
   return (
     <Provider store={store}>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-VML3TGXB9X"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-VML3TGXB9X');
+        `}
+      </Script>
       <SWRConfig
         value={{
           fetcher: async (resource, init) => await swrFetcher(resource, init),
