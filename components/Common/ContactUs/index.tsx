@@ -66,6 +66,12 @@ const ContactUs = () => {
               No. 1, Owoseni Street, Bolade Oshodi, Lagos.
             </p>
           </div>
+          <div>
+            <h4 className="text-base font-bold sm:text-lg">Telephone:</h4>
+            <p className="text-sm sm:text-base">
+              08023052948, 08066346536, 08059855434
+            </p>
+          </div>
         </div>
         {/* <form onSubmit={sendMail}>
           <div className="flex flex-col space-y-8">
