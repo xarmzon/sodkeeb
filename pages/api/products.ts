@@ -112,6 +112,7 @@ const getProducts = async (req: NextApiRequest, res: NextApiResponse) => {
         },
       })
     }
+
     const pg = await getCustomPaginationData<TProductItem>(
       pipeline,
       ProductModel,

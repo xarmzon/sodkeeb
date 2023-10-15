@@ -3,7 +3,7 @@ import axios from 'axios'
 const api = axios.create()
 
 api.defaults.baseURL =
-  process.env.NEXT_PUBLIC_API_ENDPOINT || 'http://localhost:3000/api/'
+  process.env.NEXT_PUBLIC_API_ENDPOINT || 'http://localhost:3007/api/'
 
 api.interceptors.request.use((config) => {
   const user = localStorage.getItem('user')

@@ -2,14 +2,15 @@ import mongoose, { Model } from 'mongoose'
 import { PER_PAGE } from './constants'
 import { IPagingData } from './types'
 
+const connectString =
+  process.env.DATABASE_URI || 'mongodb://localhost:27017/sodkeeb'
 export const connectDB = async () => {
   if (mongoose.connections[0].readyState) {
     console.log('Already connected')
     return
   }
-  const db = await mongoose.connect(
-    process.env.DATABASE_URI || 'mongodb://localhost:27017/sodkeeb'
-  )
+  console.log({ connectString })
+  const db = await mongoose.connect(connectString)
   console.log('Database connected.....')
   return db
 }

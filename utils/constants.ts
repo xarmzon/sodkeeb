@@ -1,5 +1,5 @@
 import { NavLink } from './types'
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3007'
 
 export const APP_NAME = 'SODKEEB TRADO MEDICAL CENTER'
 export const DEFAULT_SEO = {
